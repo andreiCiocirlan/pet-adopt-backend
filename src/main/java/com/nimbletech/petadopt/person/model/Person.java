@@ -1,5 +1,6 @@
-package com.nimbletech.petadopt.model;
+package com.nimbletech.petadopt.person.model;
 
+import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

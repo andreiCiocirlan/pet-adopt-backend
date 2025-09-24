@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.model;
+package com.nimbletech.petadopt.pet.model;
 
 import jakarta.persistence.*;
 import lombok.*;

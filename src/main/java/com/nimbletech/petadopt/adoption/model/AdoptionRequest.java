@@ -1,5 +1,7 @@
-package com.nimbletech.petadopt.model;
+package com.nimbletech.petadopt.adoption.model;
 
+import com.nimbletech.petadopt.person.model.Person;
+import com.nimbletech.petadopt.pet.model.Pet;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +23,7 @@ public class AdoptionRequest {
     private Pet pet;
 
     @ManyToOne
-    private Person person;  // Instead of Adopter
+    private Person person;
 
     private LocalDateTime requestDate;
     private String status; // e.g. "pending", "approved", "rejected"

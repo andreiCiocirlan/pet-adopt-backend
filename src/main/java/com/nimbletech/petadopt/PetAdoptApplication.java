@@ -1,12 +1,12 @@
 package com.nimbletech.petadopt;
 
-import com.nimbletech.petadopt.model.AdoptionRequest;
-import com.nimbletech.petadopt.model.Person;
-import com.nimbletech.petadopt.model.Pet;
-import com.nimbletech.petadopt.model.UserStatus;
-import com.nimbletech.petadopt.repository.AdoptionRequestRepository;
-import com.nimbletech.petadopt.repository.PersonRepository;
-import com.nimbletech.petadopt.repository.PetRepository;
+import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
+import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
+import com.nimbletech.petadopt.person.model.Person;
+import com.nimbletech.petadopt.person.model.UserStatus;
+import com.nimbletech.petadopt.person.repository.PersonRepository;
+import com.nimbletech.petadopt.pet.model.Pet;
+import com.nimbletech.petadopt.pet.repository.PetRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

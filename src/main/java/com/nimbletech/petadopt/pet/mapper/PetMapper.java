@@ -3,6 +3,7 @@ package com.nimbletech.petadopt.pet.mapper;
 import com.nimbletech.petadopt.pet.dto.CreatePetDto;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.model.Pet;
+import com.nimbletech.petadopt.pet.model.PetStatus;
 
 public class PetMapper {
 
@@ -29,7 +30,7 @@ public class PetMapper {
                 petDto.getBreed(),
                 petDto.getMedicalHistory(),
                 petDto.getMicrochipId(),
-                petDto.getStatus()
+                PetStatus.AVAILABLE
         );
     }
 

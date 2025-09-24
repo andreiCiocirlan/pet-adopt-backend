@@ -25,12 +25,12 @@ public class Person {
     private String address;
 
     @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    private PersonStatus status;
 
     @OneToMany(mappedBy = "person")
     private List<AdoptionRequest> adoptionRequests;
 
-    public Person(Long id, String name, String email, UserStatus status) {
+    public Person(Long id, String name, String email, PersonStatus status) {
         this.id = id;
         this.name = name;
         this.email = email;

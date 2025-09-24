@@ -4,7 +4,7 @@ import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
 import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
 import com.nimbletech.petadopt.person.model.Person;
-import com.nimbletech.petadopt.person.model.UserStatus;
+import com.nimbletech.petadopt.person.model.PersonStatus;
 import com.nimbletech.petadopt.person.repository.PersonRepository;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
@@ -30,8 +30,8 @@ public class PetAdoptApplication {
         return args -> {
             boolean emptyDatabase = petRepository.count() == 0 && personRepository.count() == 0 && adoptionRequestRepository.count() == 0;
             if (emptyDatabase) {
-                Person person1 = personRepository.save(new Person(null, "Alice Johnson", "alice@example.com", UserStatus.APPLICANT));
-                Person person2 = personRepository.save(new Person(null, "Bob Smith", "bob@example.com", UserStatus.ADOPTER));
+                Person person1 = personRepository.save(new Person(null, "Alice Johnson", "alice@example.com", PersonStatus.APPLICANT));
+                Person person2 = personRepository.save(new Person(null, "Bob Smith", "bob@example.com", PersonStatus.ADOPTER));
 
                 Pet pet1 = petRepository.save(new Pet(null, "Max", 3, "Dog", "Golden Retriever", "healthy", PetStatus.AVAILABLE));
                 Pet pet2 = petRepository.save(new Pet(null, "Whiskers", 2, "Cat", "Siamese", "healthy", PetStatus.AVAILABLE));

@@ -9,7 +9,7 @@ import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
 import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
 import com.nimbletech.petadopt.person.model.Person;
-import com.nimbletech.petadopt.person.model.UserStatus;
+import com.nimbletech.petadopt.person.model.PersonStatus;
 import com.nimbletech.petadopt.person.repository.PersonRepository;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
@@ -40,7 +40,7 @@ public class UpdateAdoptionRequestService implements Command<AdoptionRequestUpda
                         Person person = existing.getPerson();
                         Pet pet = existing.getPet();
 
-                        person.setStatus(UserStatus.ADOPTER);
+                        person.setStatus(PersonStatus.ADOPTER);
                         pet.setStatus(PetStatus.ADOPTED);
 
                         personRepository.save(person);

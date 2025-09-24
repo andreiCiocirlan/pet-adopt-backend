@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.person.model;
 
-public enum UserStatus {
+public enum PersonStatus {
 
     APPLICANT, ADOPTER
 

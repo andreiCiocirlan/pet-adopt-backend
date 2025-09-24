@@ -2,6 +2,7 @@ package com.nimbletech.petadopt.adoption.mapper;
 
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestResponseDTO;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
+import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.person.model.Person;
 import com.nimbletech.petadopt.pet.model.Pet;
 
@@ -11,7 +12,7 @@ public class AdoptionRequestMapper {
 
     public static AdoptionRequest toEntity(Person person, Pet pet) {
         AdoptionRequest ar = new AdoptionRequest();
-        ar.setStatus("pending");
+        ar.setStatus(AdoptionStatus.PENDING);
         ar.setRequestDate(LocalDateTime.now());
         ar.setPet(pet);
         ar.setPerson(person);

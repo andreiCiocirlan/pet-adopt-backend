@@ -6,11 +6,13 @@ import com.nimbletech.petadopt.adoption.dto.AdoptionRequestUpdateRequest;
 import com.nimbletech.petadopt.adoption.dto.UpdateAdoptionRequestDto;
 import com.nimbletech.petadopt.adoption.mapper.AdoptionRequestMapper;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
+import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
 import com.nimbletech.petadopt.person.model.Person;
 import com.nimbletech.petadopt.person.model.UserStatus;
 import com.nimbletech.petadopt.person.repository.PersonRepository;
 import com.nimbletech.petadopt.pet.model.Pet;
+import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,12 +36,12 @@ public class UpdateAdoptionRequestService implements Command<AdoptionRequestUpda
 
         return adoptionRequestRepository.findById(id)
                 .map(existing -> {
-                    if ("approved".equalsIgnoreCase(dto.getStatus())) {
+                    if (AdoptionStatus.APPROVED == dto.getStatus()) {
                         Person person = existing.getPerson();
                         Pet pet = existing.getPet();
 
                         person.setStatus(UserStatus.ADOPTER);
-                        pet.setStatus("adopted");
+                        pet.setStatus(PetStatus.ADOPTED);
 
                         personRepository.save(person);
                         petRepository.save(pet);

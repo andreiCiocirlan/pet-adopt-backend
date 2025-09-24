@@ -20,9 +20,11 @@ public class Pet {
     private String breed;
     private String medicalHistory;
     private String microchipId;
-    private String status; // e.g. "available", "adopted"
 
-    public Pet(Long id, String name, int age, String type, String breed, String medicalHistory, String status) {
+    @Enumerated(EnumType.STRING)
+    private PetStatus status;
+
+    public Pet(Long id, String name, int age, String type, String breed, String medicalHistory, PetStatus status) {
         this.id = id;
         this.name = name;
         this.age = age;

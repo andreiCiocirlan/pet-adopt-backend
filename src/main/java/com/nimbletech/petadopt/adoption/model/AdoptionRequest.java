@@ -26,5 +26,5 @@ public class AdoptionRequest {
     private Person person;
 
     private LocalDateTime requestDate;
-    private String status; // e.g. "pending", "approved", "rejected"
+    private AdoptionStatus status;
 }

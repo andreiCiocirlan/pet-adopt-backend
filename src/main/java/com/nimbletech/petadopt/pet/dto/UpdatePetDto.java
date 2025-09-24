@@ -1,5 +1,6 @@
 package com.nimbletech.petadopt.pet.dto;
 
+import com.nimbletech.petadopt.pet.model.PetStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,5 +13,5 @@ public class UpdatePetDto {
     private String breed;
     private String medicalHistory;
     private String microchipId;
-    private String status; // e.g. "available", "adopted"
+    private PetStatus status;
 }

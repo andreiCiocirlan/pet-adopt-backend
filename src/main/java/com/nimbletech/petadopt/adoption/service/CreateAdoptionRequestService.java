@@ -5,10 +5,12 @@ import com.nimbletech.petadopt.adoption.dto.AdoptionRequestCreateDTO;
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestResponseDTO;
 import com.nimbletech.petadopt.adoption.mapper.AdoptionRequestMapper;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
+import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
 import com.nimbletech.petadopt.person.model.Person;
 import com.nimbletech.petadopt.person.repository.PersonRepository;
 import com.nimbletech.petadopt.pet.model.Pet;
+import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -38,14 +40,13 @@ public class CreateAdoptionRequestService implements Command<AdoptionRequestCrea
         Pet pet = petRepository.findById(dto.getPetId())
                 .orElseThrow(() -> new EntityNotFoundException("Pet not found"));
 
-        // Check preconditions, e.g., pet availability and person status
-        if (!"available".equalsIgnoreCase(pet.getStatus())) {
+        if (PetStatus.AVAILABLE != pet.getStatus()) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(null); // or custom error dto/message
         }
 
         AdoptionRequest request = AdoptionRequestMapper.toEntity(person, pet);
-        request.setStatus("pending");
+        request.setStatus(AdoptionStatus.PENDING);
         request.setRequestDate(LocalDateTime.now());
 
         AdoptionRequest savedRequest = adoptionRequestRepository.save(request);

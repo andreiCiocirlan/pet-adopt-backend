@@ -12,5 +12,4 @@ public class CreatePetDto {
     private String breed;
     private String medicalHistory;
     private String microchipId;
-    private String status; // e.g. "available", "adopted"
 }

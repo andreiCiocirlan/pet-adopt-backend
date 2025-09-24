@@ -5,6 +5,7 @@ import com.nimbletech.petadopt.pet.dto.CreatePetDto;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.mapper.PetMapper;
 import com.nimbletech.petadopt.pet.model.Pet;
+import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class CreatePetService implements Command<CreatePetDto, PetDto> {
     public ResponseEntity<PetDto> execute(CreatePetDto petDto) {
         log.info("Executing {}", getClass().getSimpleName());
         Pet pet = PetMapper.toEntity(petDto);
+        pet.setStatus(PetStatus.AVAILABLE);
         Pet saved = petRepository.save(pet);
         return ResponseEntity.status(HttpStatus.CREATED).body(PetMapper.toDto(saved));
     }

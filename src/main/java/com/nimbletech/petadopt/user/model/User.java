@@ -23,6 +23,7 @@ public class User {
     private String email;
     private String phone;
     private String address;
+    private String password;
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
@@ -30,10 +31,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<AdoptionRequest> adoptionRequests;
 
-    public User(Long id, String name, String email, UserStatus status) {
+    public User(Long id, String name, String email, String password, UserStatus status) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.status = status;
     }
 }

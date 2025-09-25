@@ -14,6 +14,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -25,14 +26,16 @@ public class PetAdoptApplication {
     }
 
     @Bean
-    public ApplicationRunner dataLoader(PetRepository petRepository,
+    public ApplicationRunner dataLoader(BCryptPasswordEncoder passwordEncoder,
+                                        PetRepository petRepository,
                                         UserRepository userRepository,
                                         AdoptionRequestRepository adoptionRequestRepository) {
         return args -> {
             boolean emptyDatabase = petRepository.count() == 0 && userRepository.count() == 0 && adoptionRequestRepository.count() == 0;
             if (emptyDatabase) {
-                User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", UserStatus.APPLICANT));
-                User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", UserStatus.ADOPTER));
+                String password = passwordEncoder.encode("test123");
+                User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT));
+                User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", password, UserStatus.ADOPTER));
 
                 Pet pet1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "healthy", "12345", "https://images.dog.ceo/breeds/retriever-golden/20200801_174527_200801.jpg", PetStatus.AVAILABLE));
                 Pet pet2 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "healthy", "23456", "https://cdn2.thecatapi.com/images/e6n.jpg", PetStatus.ADOPTED));

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -19,12 +20,17 @@ import org.springframework.stereotype.Service;
 public class CreateUserService implements Command<CreateUserDto, UserDto> {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public ResponseEntity<UserDto> execute(CreateUserDto dto) {
         log.info("Executing {}", getClass().getSimpleName());
         User user = UserMapper.toEntity(dto);
         user.setStatus(UserStatus.APPLICANT);
+
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        user.setPassword(hashedPassword);
+
         User saved = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(UserMapper.toDto(saved));

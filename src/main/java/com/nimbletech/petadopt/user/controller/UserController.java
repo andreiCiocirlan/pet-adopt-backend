@@ -5,6 +5,7 @@ import com.nimbletech.petadopt.user.dto.UpdateUserDto;
 import com.nimbletech.petadopt.user.dto.UserDto;
 import com.nimbletech.petadopt.user.dto.UserUpdateRequest;
 import com.nimbletech.petadopt.user.service.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +34,8 @@ public class UserController {
         return getUserByIdService.execute(id);
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserDto dto) {
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUserDto dto) {
         return createUserService.execute(dto);
     }
 

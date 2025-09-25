@@ -5,6 +5,7 @@ import com.nimbletech.petadopt.person.dto.CreatePersonDto;
 import com.nimbletech.petadopt.person.dto.PersonDto;
 import com.nimbletech.petadopt.person.mapper.PersonMapper;
 import com.nimbletech.petadopt.person.model.Person;
+import com.nimbletech.petadopt.person.model.PersonStatus;
 import com.nimbletech.petadopt.person.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class CreatePersonService implements Command<CreatePersonDto, PersonDto> 
     public ResponseEntity<PersonDto> execute(CreatePersonDto dto) {
         log.info("Executing {}", getClass().getSimpleName());
         Person person = PersonMapper.toEntity(dto);
+        person.setStatus(PersonStatus.APPLICANT);
         Person saved = personRepository.save(person);
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(PersonMapper.toDto(saved));

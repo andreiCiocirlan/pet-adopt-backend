@@ -3,7 +3,6 @@ package com.nimbletech.petadopt.person.mapper;
 import com.nimbletech.petadopt.person.dto.CreatePersonDto;
 import com.nimbletech.petadopt.person.dto.PersonDto;
 import com.nimbletech.petadopt.person.model.Person;
-import com.nimbletech.petadopt.person.model.PersonStatus;
 
 public class PersonMapper {
 
@@ -26,7 +25,6 @@ public class PersonMapper {
         person.setEmail(dto.getEmail());
         person.setPhone(dto.getPhone());
         person.setAddress(dto.getAddress());
-        person.setStatus(PersonStatus.APPLICANT);
         return person;
     }
 }

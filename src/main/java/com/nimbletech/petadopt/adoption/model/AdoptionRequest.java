@@ -26,5 +26,7 @@ public class AdoptionRequest {
     private Person person;
 
     private LocalDateTime requestDate;
+
+    @Enumerated(EnumType.STRING)
     private AdoptionStatus status;
 }

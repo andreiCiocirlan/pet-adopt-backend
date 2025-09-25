@@ -33,8 +33,8 @@ public class PetAdoptApplication {
                 Person person1 = personRepository.save(new Person(null, "Alice Johnson", "alice@example.com", PersonStatus.APPLICANT));
                 Person person2 = personRepository.save(new Person(null, "Bob Smith", "bob@example.com", PersonStatus.ADOPTER));
 
-                Pet pet1 = petRepository.save(new Pet(null, "Max", 3, "Dog", "Golden Retriever", "healthy", PetStatus.AVAILABLE));
-                Pet pet2 = petRepository.save(new Pet(null, "Whiskers", 2, "Cat", "Siamese", "healthy", PetStatus.AVAILABLE));
+                Pet pet1 = petRepository.save(new Pet(null, "Max", 3, "Dog", "Golden Retriever", "healthy", "12345", PetStatus.AVAILABLE));
+                Pet pet2 = petRepository.save(new Pet(null, "Whiskers", 2, "Cat", "Siamese", "healthy", "23456", PetStatus.ADOPTED));
 
                 AdoptionRequest request1 = new AdoptionRequest(null, pet1, person1, LocalDateTime.now(), AdoptionStatus.PENDING);
                 AdoptionRequest request2 = new AdoptionRequest(null, pet2, person2, LocalDateTime.now().minusDays(10), AdoptionStatus.APPROVED);

@@ -1,6 +1,5 @@
 package com.nimbletech.petadopt.pet.dto;
 
-import com.nimbletech.petadopt.pet.model.PetStatus;
 import lombok.Builder;
 import lombok.Data;
 

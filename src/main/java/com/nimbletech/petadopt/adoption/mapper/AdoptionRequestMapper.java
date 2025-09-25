@@ -12,8 +12,6 @@ public class AdoptionRequestMapper {
 
     public static AdoptionRequest toEntity(Person person, Pet pet) {
         AdoptionRequest ar = new AdoptionRequest();
-        ar.setStatus(AdoptionStatus.PENDING);
-        ar.setRequestDate(LocalDateTime.now());
         ar.setPet(pet);
         ar.setPerson(person);
         return ar;

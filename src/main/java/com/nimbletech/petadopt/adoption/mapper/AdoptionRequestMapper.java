@@ -2,8 +2,8 @@ package com.nimbletech.petadopt.adoption.mapper;
 
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestResponseDTO;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
-import com.nimbletech.petadopt.user.model.User;
 import com.nimbletech.petadopt.pet.model.Pet;
+import com.nimbletech.petadopt.user.model.User;
 
 public class AdoptionRequestMapper {
 

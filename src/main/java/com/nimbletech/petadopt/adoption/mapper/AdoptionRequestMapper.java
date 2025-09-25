@@ -2,11 +2,8 @@ package com.nimbletech.petadopt.adoption.mapper;
 
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestResponseDTO;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
-import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.person.model.Person;
 import com.nimbletech.petadopt.pet.model.Pet;
-
-import java.time.LocalDateTime;
 
 public class AdoptionRequestMapper {
 

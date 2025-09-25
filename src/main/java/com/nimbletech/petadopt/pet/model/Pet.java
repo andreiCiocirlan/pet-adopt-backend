@@ -16,10 +16,12 @@ public class Pet {
     private Long id;
     private String name;
     private int age;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private AnimalType type;
     private String breed;
     private String medicalHistory;
     private String microchipId;
+    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     private PetStatus status;

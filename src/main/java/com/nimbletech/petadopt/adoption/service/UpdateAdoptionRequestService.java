@@ -8,9 +8,9 @@ import com.nimbletech.petadopt.adoption.mapper.AdoptionRequestMapper;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
 import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
-import com.nimbletech.petadopt.person.model.Person;
-import com.nimbletech.petadopt.person.model.PersonStatus;
-import com.nimbletech.petadopt.person.repository.PersonRepository;
+import com.nimbletech.petadopt.user.model.User;
+import com.nimbletech.petadopt.user.model.UserStatus;
+import com.nimbletech.petadopt.user.repository.UserRepository;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
@@ -27,7 +27,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class UpdateAdoptionRequestService implements Command<AdoptionRequestUpdateRequest, AdoptionRequestResponseDTO> {
 
     private final AdoptionRequestRepository adoptionRequestRepository;
-    private final PersonRepository personRepository;
+    private final UserRepository userRepository;
     private final PetRepository petRepository;
 
     @Override
@@ -45,13 +45,13 @@ public class UpdateAdoptionRequestService implements Command<AdoptionRequestUpda
                     }
                     if (AdoptionStatus.APPROVED == dto.getStatus()) {
                         log.info("Adoption request with id = {} is approved", id);
-                        Person person = existing.getPerson();
+                        User user = existing.getUser();
                         Pet pet = existing.getPet();
 
-                        person.setStatus(PersonStatus.ADOPTER);
+                        user.setStatus(UserStatus.ADOPTER);
                         pet.setStatus(PetStatus.ADOPTED);
 
-                        personRepository.save(person);
+                        userRepository.save(user);
                         petRepository.save(pet);
                     }
 

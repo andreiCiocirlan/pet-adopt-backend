@@ -1,11 +1,11 @@
-package com.nimbletech.petadopt.person.dto;
+package com.nimbletech.petadopt.user.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class CreatePersonDto {
+public class CreateUserDto {
 
     private String name;
     private String email;

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface AdoptionRequestRepository extends JpaRepository<AdoptionRequest, Long> {
 
-    @EntityGraph(attributePaths = {"person", "pet"})
+    @EntityGraph(attributePaths = {"user", "pet"})
     List<AdoptionRequest> findAll();
 }

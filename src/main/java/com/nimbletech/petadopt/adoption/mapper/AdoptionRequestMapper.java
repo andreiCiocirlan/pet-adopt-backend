@@ -2,15 +2,15 @@ package com.nimbletech.petadopt.adoption.mapper;
 
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestResponseDTO;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
-import com.nimbletech.petadopt.person.model.Person;
+import com.nimbletech.petadopt.user.model.User;
 import com.nimbletech.petadopt.pet.model.Pet;
 
 public class AdoptionRequestMapper {
 
-    public static AdoptionRequest toEntity(Person person, Pet pet) {
+    public static AdoptionRequest toEntity(User user, Pet pet) {
         AdoptionRequest ar = new AdoptionRequest();
         ar.setPet(pet);
-        ar.setPerson(person);
+        ar.setUser(user);
         return ar;
     }
 
@@ -18,7 +18,7 @@ public class AdoptionRequestMapper {
         return new AdoptionRequestResponseDTO(
                 entity.getId(),
                 entity.getPet().getId(),
-                entity.getPerson().getId(),
+                entity.getUser().getId(),
                 entity.getStatus(),
                 entity.getRequestDate()
         );

@@ -7,8 +7,8 @@ import com.nimbletech.petadopt.adoption.mapper.AdoptionRequestMapper;
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
 import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
-import com.nimbletech.petadopt.person.model.Person;
-import com.nimbletech.petadopt.person.repository.PersonRepository;
+import com.nimbletech.petadopt.user.model.User;
+import com.nimbletech.petadopt.user.repository.UserRepository;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
@@ -27,15 +27,15 @@ import java.time.LocalDateTime;
 public class CreateAdoptionRequestService implements Command<AdoptionRequestCreateDTO, AdoptionRequestResponseDTO> {
 
     private final AdoptionRequestRepository adoptionRequestRepository;
-    private final PersonRepository personRepository;
+    private final UserRepository userRepository;
     private final PetRepository petRepository;
 
     @Override
     public ResponseEntity<AdoptionRequestResponseDTO> execute(AdoptionRequestCreateDTO dto) {
         log.info("Executing {}", getClass().getSimpleName());
 
-        Person person = personRepository.findById(dto.getPersonId())
-                .orElseThrow(() -> new EntityNotFoundException("Person not found"));
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         Pet pet = petRepository.findById(dto.getPetId())
                 .orElseThrow(() -> new EntityNotFoundException("Pet not found"));
@@ -45,7 +45,7 @@ public class CreateAdoptionRequestService implements Command<AdoptionRequestCrea
                     .body(null); // or custom error dto/message
         }
 
-        AdoptionRequest request = AdoptionRequestMapper.toEntity(person, pet);
+        AdoptionRequest request = AdoptionRequestMapper.toEntity(user, pet);
         request.setStatus(AdoptionStatus.PENDING);
         request.setRequestDate(LocalDateTime.now());
 

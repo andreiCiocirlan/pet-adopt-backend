@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.adoption.model;
 
-import com.nimbletech.petadopt.person.model.Person;
+import com.nimbletech.petadopt.user.model.User;
 import com.nimbletech.petadopt.pet.model.Pet;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +23,7 @@ public class AdoptionRequest {
     private Pet pet;
 
     @ManyToOne
-    private Person person;
+    private User user;
 
     private LocalDateTime requestDate;
 

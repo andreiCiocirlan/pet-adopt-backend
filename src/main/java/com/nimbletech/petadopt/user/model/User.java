@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.person.model;
+package com.nimbletech.petadopt.user.model;
 
 import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
 import jakarta.persistence.*;
@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
-@Table(name = "persons")
-public class Person {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,12 @@ public class Person {
     private String address;
 
     @Enumerated(EnumType.STRING)
-    private PersonStatus status;
+    private UserStatus status;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "user")
     private List<AdoptionRequest> adoptionRequests;
 
-    public Person(Long id, String name, String email, PersonStatus status) {
+    public User(Long id, String name, String email, UserStatus status) {
         this.id = id;
         this.name = name;
         this.email = email;

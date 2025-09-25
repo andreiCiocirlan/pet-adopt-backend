@@ -9,6 +9,6 @@ import lombok.Data;
 @Data
 public class AdoptionRequestCreateDTO {
 
-    private Long personId;
+    private Long userId;
     private Long petId;
 }

@@ -8,6 +8,7 @@ import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class AdoptionRequestController {
     }
 
     @PostMapping
-    public ResponseEntity<AdoptionRequestResponseDTO> createRequest(@RequestBody AdoptionRequestCreateDTO dto) {
+    public ResponseEntity<AdoptionRequestResponseDTO> createRequest(@RequestBody AdoptionRequestCreateDTO dto, Authentication authentication) {
         return createAdoptionRequestService.execute(dto);
     }
 

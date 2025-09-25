@@ -3,7 +3,6 @@ package com.nimbletech.petadopt.pet.mapper;
 import com.nimbletech.petadopt.pet.dto.CreatePetDto;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.model.Pet;
-import com.nimbletech.petadopt.pet.model.PetStatus;
 
 public class PetMapper {
 
@@ -23,15 +22,14 @@ public class PetMapper {
 
     public static Pet toEntity(CreatePetDto petDto) {
         if (petDto == null) return null;
-        return new Pet(null,
-                petDto.getName(),
-                petDto.getAge(),
-                petDto.getType(),
-                petDto.getBreed(),
-                petDto.getMedicalHistory(),
-                petDto.getMicrochipId(),
-                PetStatus.AVAILABLE
-        );
+        Pet pet = new Pet();
+        pet.setName(petDto.getName());
+        pet.setAge(petDto.getAge());
+        pet.setType(petDto.getType());
+        pet.setBreed(petDto.getBreed());
+        pet.setMedicalHistory(petDto.getMedicalHistory());
+        pet.setMicrochipId(petDto.getMicrochipId());
+        return pet;
     }
 
 }

@@ -21,6 +21,7 @@ public class AdoptionRequestController {
 
     private final GetAdoptionRequestsService getAdoptionRequestsService;
     private final GetAdoptionRequestByIdService getAdoptionRequestByIdService;
+    private final GetUserAdoptionsService getUserAdoptionsService;
     private final CreateAdoptionRequestService createAdoptionRequestService;
     private final UpdateAdoptionRequestService updateAdoptionRequestService;
     private final DeleteAdoptionRequestService deleteAdoptionRequestService;
@@ -33,6 +34,11 @@ public class AdoptionRequestController {
     @GetMapping("/{id}")
     public ResponseEntity<AdoptionRequestResponseDTO> getRequestById(@PathVariable Long id) {
         return getAdoptionRequestByIdService.execute(id);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<AdoptionRequestResponseDTO>> getUserAdoptions(@PathVariable Long userId) {
+        return getUserAdoptionsService.execute(userId);
     }
 
     @PostMapping

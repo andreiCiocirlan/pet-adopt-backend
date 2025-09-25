@@ -12,4 +12,7 @@ public interface AdoptionRequestRepository extends JpaRepository<AdoptionRequest
 
     @EntityGraph(attributePaths = {"user", "pet"})
     List<AdoptionRequest> findAll();
+
+    List<AdoptionRequest> findByUserId(Long userId);
+
 }

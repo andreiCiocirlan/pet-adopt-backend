@@ -13,5 +13,4 @@ public class UpdatePetDto {
     private String breed;
     private String medicalHistory;
     private String microchipId;
-    private PetStatus status;
 }

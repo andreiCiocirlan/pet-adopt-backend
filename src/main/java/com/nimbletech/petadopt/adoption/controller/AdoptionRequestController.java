@@ -3,7 +3,8 @@ package com.nimbletech.petadopt.adoption.controller;
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestCreateDTO;
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestResponseDTO;
 import com.nimbletech.petadopt.adoption.dto.AdoptionRequestUpdateRequest;
-import com.nimbletech.petadopt.adoption.dto.UpdateAdoptionRequestDto;
+import com.nimbletech.petadopt.adoption.dto.AdoptionStatusUpdateDto;
+import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
 import com.nimbletech.petadopt.adoption.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +38,16 @@ public class AdoptionRequestController {
         return createAdoptionRequestService.execute(dto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AdoptionRequestResponseDTO> updateRequest(@PathVariable Long id, @RequestBody UpdateAdoptionRequestDto dto) {
+    @PutMapping("/{id}/approve")
+    public ResponseEntity<AdoptionRequestResponseDTO> approveRequest(@PathVariable Long id) {
+        AdoptionStatusUpdateDto dto = new AdoptionStatusUpdateDto(AdoptionStatus.APPROVED);
+        AdoptionRequestUpdateRequest updateRequest = new AdoptionRequestUpdateRequest(id, dto);
+        return updateAdoptionRequestService.execute(updateRequest);
+    }
+
+    @PutMapping("/{id}/reject")
+    public ResponseEntity<AdoptionRequestResponseDTO> rejectRequest(@PathVariable Long id) {
+        AdoptionStatusUpdateDto dto = new AdoptionStatusUpdateDto(AdoptionStatus.REJECTED);
         AdoptionRequestUpdateRequest updateRequest = new AdoptionRequestUpdateRequest(id, dto);
         return updateAdoptionRequestService.execute(updateRequest);
     }

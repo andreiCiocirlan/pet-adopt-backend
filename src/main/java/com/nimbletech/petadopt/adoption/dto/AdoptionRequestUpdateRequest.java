@@ -8,6 +8,6 @@ import lombok.Data;
 public class AdoptionRequestUpdateRequest {
 
     private Long id;
-    private UpdateAdoptionRequestDto dto;
+    private AdoptionStatusUpdateDto dto;
 
 }

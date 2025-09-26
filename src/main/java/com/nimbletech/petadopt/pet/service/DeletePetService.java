@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DeletePetService implements Command<Long, Void> {
+public class DeletePetService implements Command<String, Void> {
 
     private final PetRepository petRepository;
 
     @Override
-    public ResponseEntity<Void> execute(Long id) {
+    public ResponseEntity<Void> execute(String id) {
         log.info("Executing {} ", getClass().getSimpleName());
         if (!petRepository.existsById(id)) {
             return ResponseEntity.notFound().build();

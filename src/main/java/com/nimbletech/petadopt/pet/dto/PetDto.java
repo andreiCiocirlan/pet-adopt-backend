@@ -8,7 +8,7 @@ import lombok.Data;
 @Builder
 @Data
 public class PetDto {
-    private Long id;
+    private String id;
     private String name;
     private int age;
     private AnimalType type;

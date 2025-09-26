@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class GetPetByIdService implements Query<Long, PetDto> {
+public class GetPetByIdService implements Query<String, PetDto> {
 
     private final PetRepository petRepository;
 
     @Override
-    public ResponseEntity<PetDto> execute(Long id) {
+    public ResponseEntity<PetDto> execute(String id) {
         log.info("Executing {} ", getClass().getSimpleName());
         return petRepository.findById(id)
             .map(PetMapper::toDto)

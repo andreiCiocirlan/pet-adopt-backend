@@ -10,5 +10,5 @@ import lombok.Data;
 public class AdoptionRequestCreateDTO {
 
     private Long userId;
-    private Long petId;
+    private String petId;
 }

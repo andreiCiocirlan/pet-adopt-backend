@@ -12,8 +12,8 @@ import lombok.*;
 @Table(name = "pets")
 public class Pet {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String name;
     private int age;
     @Enumerated(EnumType.STRING)

@@ -6,6 +6,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class PetUpdateRequest {
-    private Long id;
+    private String id;
     private UpdatePetDto updatePetDto;
 }

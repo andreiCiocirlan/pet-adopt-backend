@@ -39,6 +39,7 @@ public class PetAdoptApplication {
 
                 Pet pet1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "healthy", "12345", "https://images.dog.ceo/breeds/retriever-golden/20200801_174527_200801.jpg", PetStatus.AVAILABLE));
                 Pet pet2 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "healthy", "23456", "https://cdn2.thecatapi.com/images/e6n.jpg", PetStatus.ADOPTED));
+                Pet pet3 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tuxedo", "healthy", "23456", "https://cdn2.thecatapi.com/images/es.jpg", PetStatus.AVAILABLE));
 
                 AdoptionRequest request1 = new AdoptionRequest(null, pet1, user1, LocalDateTime.now(), AdoptionStatus.PENDING);
                 AdoptionRequest request2 = new AdoptionRequest(null, pet2, user2, LocalDateTime.now().minusDays(10), AdoptionStatus.APPROVED);

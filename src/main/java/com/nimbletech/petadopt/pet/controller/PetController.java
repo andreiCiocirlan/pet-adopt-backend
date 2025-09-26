@@ -1,9 +1,7 @@
 package com.nimbletech.petadopt.pet.controller;
 
-import com.nimbletech.petadopt.pet.dto.CreatePetDto;
-import com.nimbletech.petadopt.pet.dto.PetDto;
-import com.nimbletech.petadopt.pet.dto.PetUpdateRequest;
-import com.nimbletech.petadopt.pet.dto.UpdatePetDto;
+import com.nimbletech.petadopt.pet.dto.*;
+import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +15,23 @@ import java.util.List;
 @RequestMapping("/api/pets")
 public class PetController {
 
-    private final GetPetsService getPetsService;
     private final CreatePetService createPetService;
     private final UpdatePetService updatePetService;
     private final DeletePetService deletePetService;
     private final GetPetByIdService getPetByIdService;
+    private final SearchPetService searchPetService;
 
     @GetMapping
-    public ResponseEntity<List<PetDto>> getAllPets() {
-        return getPetsService.execute(null);
+    public ResponseEntity<List<PetDto>> searchPets(
+            @RequestParam String animalType,
+            @RequestParam(required = false) String breed,
+            @RequestParam(required = false) Integer age) {
+        try {
+            PetSearchRequest searchRequest = new PetSearchRequest(AnimalType.valueOf(animalType.toUpperCase()), breed, age);
+            return searchPetService.execute(searchRequest);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/{id}")

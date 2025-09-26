@@ -49,17 +49,31 @@ public class PetAdoptApplication {
                 List<String> cat1Urls = List.of("https://dbw3zep4prcju.cloudfront.net/animal/e6769b00-eb41-4b7f-b7a1-16ce4c262fcb/image/091f4dee-a102-4937-91fd-d6e88fe28f67.jpg?versionId=n7.qiyBrq6xNe499l6rydm5OLGzUmnU4&bust=1711902977&width=1080",
                         "https://dbw3zep4prcju.cloudfront.net/animal/e6769b00-eb41-4b7f-b7a1-16ce4c262fcb/image/ffaa8580-5c76-418b-9298-538a6cdd363f.jpg?versionId=KU0XzxT5FISPbxYSj5AFnpMJzvUYolf9&bust=1711901597&width=1080",
                         "https://dbw3zep4prcju.cloudfront.net/animal/e6769b00-eb41-4b7f-b7a1-16ce4c262fcb/image/7bba65b4-4c05-41be-bdd1-0d10011b6650.jpg?versionId=Zxle7G57SOq4nxLm8tES5k8wUK4.BWjU&bust=1711903104&width=1080");
-               List<String> cat3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/1/?bust=1758529534&width=1080",
+                List<String> cat3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/1/?bust=1758529534&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/2/?bust=1758529535&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/4/?bust=1758529534&width=1080");
-                Pet pet1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "healthy", "12345", dog1Urls, PetStatus.AVAILABLE));
-                Pet pet4 = petRepository.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "healthy", "12345", dog2Urls, PetStatus.AVAILABLE));
-                Pet pet2 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "healthy", "23456", cat1Urls, PetStatus.ADOPTED));
-                Pet pet3 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "healthy", "23456", cat2Urls, PetStatus.AVAILABLE));
-                Pet pet5 = petRepository.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "healthy", "23456", cat3Urls, PetStatus.AVAILABLE));
+                Pet dog1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "healthy", "12345", dog1Urls, PetStatus.AVAILABLE));
+                Pet dog2 = petRepository.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "healthy", "12345", dog2Urls, PetStatus.AVAILABLE));
+                Pet cat1 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "healthy", "23456", cat1Urls, PetStatus.ADOPTED));
+                Pet cat2 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "healthy", "23456", cat2Urls, PetStatus.AVAILABLE));
+                Pet cat3 = petRepository.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "healthy", "23456", cat3Urls, PetStatus.AVAILABLE));
 
-                AdoptionRequest request1 = new AdoptionRequest(null, pet1, user1, LocalDateTime.now(), AdoptionStatus.PENDING);
-                AdoptionRequest request2 = new AdoptionRequest(null, pet2, user2, LocalDateTime.now().minusDays(10), AdoptionStatus.APPROVED);
+
+                List<String> bird1Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77773932/1/?bust=1758818114&width=1080",
+                        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77773932/3/?bust=1758818112&width=1080",
+                        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77773932/2/?bust=1758818109&width=1080");
+                List<String> bird2Urls = List.of("https://dbw3zep4prcju.cloudfront.net/animal/5e819d8d-676b-4d4a-b743-e62618f32e5f/image/b10cf77f-253a-46f3-ad85-f03634655641.jpg?versionId=pdMztSAPx0IsKENVyqTNFguPO3got7n1&bust=1757515927&width=1080",
+                        "https://dbw3zep4prcju.cloudfront.net/animal/5e819d8d-676b-4d4a-b743-e62618f32e5f/image/5f99bf31-ea22-4f7a-811a-7aaaf41de101.jpg?versionId=g8mEYJgCjgi_G8gQZcjQmMufvUUyBQKv&bust=1757515985&width=1080",
+                        "https://dbw3zep4prcju.cloudfront.net/animal/5e819d8d-676b-4d4a-b743-e62618f32e5f/image/7b31b8dc-1db0-4dbf-adbd-a5de86899ca4.jpg?versionId=a8VtVegGu4GuHyk9VmiERpol_1T8SL0s&bust=1757515986&width=1080");
+                List<String> bird3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/1/?bust=1758558904&width=1080",
+                        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/2/?bust=1758558906&width=1080",
+                        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/3/?bust=1758558906&width=1080");
+                Pet bird1 = petRepository.save(new Pet(null, "Mango", 2, AnimalType.BIRD, "Cockatiel", "healthy", "12345", bird1Urls, PetStatus.AVAILABLE));
+                Pet bird2 = petRepository.save(new Pet(null, "Walker", 1, AnimalType.BIRD, "Pigeon", "healthy", "12345", bird2Urls, PetStatus.AVAILABLE));
+                Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "healthy", "12345", bird3Urls, PetStatus.AVAILABLE));
+
+                AdoptionRequest request1 = new AdoptionRequest(null, dog1, user1, LocalDateTime.now(), AdoptionStatus.PENDING);
+                AdoptionRequest request2 = new AdoptionRequest(null, cat1, user2, LocalDateTime.now().minusDays(10), AdoptionStatus.APPROVED);
 
                 adoptionRequestRepository.save(request1);
                 adoptionRequestRepository.save(request2);

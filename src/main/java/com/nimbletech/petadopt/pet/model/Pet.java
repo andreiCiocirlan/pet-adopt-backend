@@ -3,6 +3,9 @@ package com.nimbletech.petadopt.pet.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,7 +24,10 @@ public class Pet {
     private String breed;
     private String medicalHistory;
     private String microchipId;
-    private String imageUrl;
+    @ElementCollection
+    @CollectionTable(name = "pet_image_urls", joinColumns = @JoinColumn(name = "pet_id"))
+    @Column(name = "image_url")
+    private List<String> imageUrls = new ArrayList<>();;
 
     @Enumerated(EnumType.STRING)
     private PetStatus status;

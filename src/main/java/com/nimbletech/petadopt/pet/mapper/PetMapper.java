@@ -16,7 +16,7 @@ public class PetMapper {
                 .breed(pet.getBreed())
                 .medicalHistory(pet.getMedicalHistory())
                 .microchipId(pet.getMicrochipId())
-                .imageUrl(pet.getImageUrl())
+                .imageUrls(pet.getImageUrls())
                 .status(pet.getStatus())
                 .build();
     }
@@ -30,7 +30,7 @@ public class PetMapper {
         pet.setBreed(petDto.getBreed());
         pet.setMedicalHistory(petDto.getMedicalHistory());
         pet.setMicrochipId(petDto.getMicrochipId());
-        pet.setImageUrl(petDto.getImageUrl());
+        pet.setImageUrls(petDto.getImageUrls());
         return pet;
     }
 

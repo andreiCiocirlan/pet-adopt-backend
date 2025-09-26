@@ -4,6 +4,8 @@ import com.nimbletech.petadopt.pet.model.AnimalType;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Builder
 @Data
 public class UpdatePetDto {
@@ -13,5 +15,5 @@ public class UpdatePetDto {
     private String breed;
     private String medicalHistory;
     private String microchipId;
-    private String imageUrl;
+    private List<String> imageUrls;
 }

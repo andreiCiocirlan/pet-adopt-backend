@@ -1,5 +1,6 @@
 package com.nimbletech.petadopt.pet.model;
 
+import com.nimbletech.petadopt.appointment.model.Appointment;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +33,19 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private PetStatus status;
 
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments = new ArrayList<>();
 
+    public Pet(String id, String name, int age, AnimalType type, String breed, String health, String characteristics, List<String> imageUrls, PetStatus status) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.type = type;
+        this.breed = breed;
+        this.health = health;
+        this.characteristics = characteristics;
+        this.imageUrls = imageUrls;
+        this.status = status;
+    }
 }
 

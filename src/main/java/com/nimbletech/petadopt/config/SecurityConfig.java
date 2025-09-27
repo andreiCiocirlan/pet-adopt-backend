@@ -52,10 +52,11 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/users/register", "/api/pets/**", "/api/appointments/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/api/users/register", "/api/appointments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/pets/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/adoptions").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

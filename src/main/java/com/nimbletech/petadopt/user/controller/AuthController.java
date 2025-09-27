@@ -39,7 +39,7 @@ public class AuthController {
             CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
             Long userId = userDetails.getId();
 
-            String token = jwtUtil.generateToken(userDetails.getUsername(), userId);
+            String token = jwtUtil.generateToken(userDetails.getUsername(), userId, userDetails.getAuthorities());
             log.info("Generated token {} for userId {}", token, userId);
 
             return ResponseEntity.ok(Map.of("token", token));

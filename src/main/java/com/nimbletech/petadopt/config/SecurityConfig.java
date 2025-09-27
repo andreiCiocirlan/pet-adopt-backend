@@ -55,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**", "/api/users/register", "/api/pets/**", "/api/appointments/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/adoptions").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

@@ -8,6 +8,7 @@ import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
+import com.nimbletech.petadopt.user.model.Role;
 import com.nimbletech.petadopt.user.model.User;
 import com.nimbletech.petadopt.user.model.UserStatus;
 import com.nimbletech.petadopt.user.repository.UserRepository;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class PetAdoptApplication {
@@ -36,8 +38,8 @@ public class PetAdoptApplication {
             boolean emptyDatabase = petRepository.count() == 0 && userRepository.count() == 0 && appointmentRepository.count() == 0;
             if (emptyDatabase) {
                 String password = passwordEncoder.encode("test123");
-                User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT));
-                User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", password, UserStatus.ADOPTER));
+                User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT, Set.of(Role.ROLE_USER)));
+                User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", password, UserStatus.ADOPTER, Set.of(Role.ROLE_ADMIN)));
 
                 List<String> dog1Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/76296695/1/?bust=1758539460&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/76296695/2/?bust=1758539460&width=1080",

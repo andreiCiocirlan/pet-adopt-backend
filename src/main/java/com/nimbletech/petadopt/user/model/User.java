@@ -4,7 +4,9 @@ import com.nimbletech.petadopt.appointment.model.Appointment;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,11 +34,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;
 
-    public User(Long id, String name, String email, String password, UserStatus status) {
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
+
+    public User(Long id, String name, String email, String password, UserStatus status, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.status = status;
+        this.roles = roles;
     }
 }

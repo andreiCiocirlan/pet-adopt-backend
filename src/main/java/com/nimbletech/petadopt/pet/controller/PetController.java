@@ -20,6 +20,7 @@ public class PetController {
     private final DeletePetService deletePetService;
     private final GetPetByIdService getPetByIdService;
     private final SearchPetService searchPetService;
+    private final AdoptPetService adoptPetService;
 
     @GetMapping
     public ResponseEntity<List<PetDto>> searchPets(
@@ -48,6 +49,11 @@ public class PetController {
     public ResponseEntity<PetDto> updatePet(@PathVariable String id, @RequestBody UpdatePetDto petDto) {
         PetUpdateRequest updateRequest = new PetUpdateRequest(id, petDto);
         return updatePetService.execute(updateRequest);
+    }
+
+    @PutMapping("/adopt/{id}")
+    public ResponseEntity<PetDto> adoptPet(@PathVariable String id) {
+        return adoptPetService.execute(id);
     }
 
     @DeleteMapping("/{id}")

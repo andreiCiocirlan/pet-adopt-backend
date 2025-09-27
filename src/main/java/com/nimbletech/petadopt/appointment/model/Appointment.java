@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.adoption.model;
+package com.nimbletech.petadopt.appointment.model;
 
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.user.model.User;
@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
-@Table(name = "adoption_requests")
-public class AdoptionRequest {
+@Table(name = "appointments")
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,8 +25,12 @@ public class AdoptionRequest {
     @ManyToOne
     private User user;
 
-    private LocalDateTime requestDate;
+    private LocalDateTime appointmentDate;
 
     @Enumerated(EnumType.STRING)
-    private AdoptionStatus status;
+    private AppointmentStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private AppointmentReason appointmentReason;
+
 }

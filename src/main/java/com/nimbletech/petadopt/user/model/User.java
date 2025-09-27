@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.user.model;
 
-import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
+import com.nimbletech.petadopt.appointment.model.Appointment;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,7 +30,7 @@ public class User {
     private UserStatus status;
 
     @OneToMany(mappedBy = "user")
-    private List<AdoptionRequest> adoptionRequests;
+    private List<Appointment> appointments;
 
     public User(Long id, String name, String email, String password, UserStatus status) {
         this.id = id;

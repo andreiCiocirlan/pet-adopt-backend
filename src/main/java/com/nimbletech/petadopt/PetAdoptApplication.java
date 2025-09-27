@@ -1,8 +1,9 @@
 package com.nimbletech.petadopt;
 
-import com.nimbletech.petadopt.adoption.model.AdoptionRequest;
-import com.nimbletech.petadopt.adoption.model.AdoptionStatus;
-import com.nimbletech.petadopt.adoption.repository.AdoptionRequestRepository;
+import com.nimbletech.petadopt.appointment.model.Appointment;
+import com.nimbletech.petadopt.appointment.model.AppointmentReason;
+import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
+import com.nimbletech.petadopt.appointment.repository.AppointmentRepository;
 import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
@@ -30,9 +31,9 @@ public class PetAdoptApplication {
     public ApplicationRunner dataLoader(BCryptPasswordEncoder passwordEncoder,
                                         PetRepository petRepository,
                                         UserRepository userRepository,
-                                        AdoptionRequestRepository adoptionRequestRepository) {
+                                        AppointmentRepository appointmentRepository) {
         return args -> {
-            boolean emptyDatabase = petRepository.count() == 0 && userRepository.count() == 0 && adoptionRequestRepository.count() == 0;
+            boolean emptyDatabase = petRepository.count() == 0 && userRepository.count() == 0 && appointmentRepository.count() == 0;
             if (emptyDatabase) {
                 String password = passwordEncoder.encode("test123");
                 User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT));
@@ -72,11 +73,15 @@ public class PetAdoptApplication {
                 Pet bird2 = petRepository.save(new Pet(null, "Walker", 1, AnimalType.BIRD, "Pigeon", "Vaccinations up to date.", "Chirpy", bird2Urls, PetStatus.AVAILABLE));
                 Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "Vaccinations up to date.", "Affectionate and friendly", bird3Urls, PetStatus.AVAILABLE));
 
-                AdoptionRequest request1 = new AdoptionRequest(null, dog1, user1, LocalDateTime.now(), AdoptionStatus.PENDING);
-                AdoptionRequest request2 = new AdoptionRequest(null, cat1, user2, LocalDateTime.now().minusDays(10), AdoptionStatus.APPROVED);
+                Appointment appointment1 = new Appointment(null, dog1, user1, LocalDateTime.now(), AppointmentStatus.PENDING, AppointmentReason.MEET_AND_GREET);
+                Appointment appointment2 = new Appointment(null, cat1, user2, LocalDateTime.now().minusDays(10), AppointmentStatus.PENDING, AppointmentReason.FOLLOW_UP);
+                Appointment appointment3 = new Appointment(null, dog2, user1, LocalDateTime.now(), AppointmentStatus.CONFIRMED, AppointmentReason.MEET_AND_GREET);
+                Appointment appointment4 = new Appointment(null, cat2, user2, LocalDateTime.now().minusDays(10), AppointmentStatus.COMPLETED, AppointmentReason.MEDICAL_CHECKUP);
 
-                adoptionRequestRepository.save(request1);
-                adoptionRequestRepository.save(request2);
+                appointmentRepository.save(appointment1);
+                appointmentRepository.save(appointment2);
+                appointmentRepository.save(appointment3);
+                appointmentRepository.save(appointment4);
             }
         };
     }

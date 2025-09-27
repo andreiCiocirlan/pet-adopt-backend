@@ -15,8 +15,8 @@ public class PetDto {
     private int age;
     private AnimalType type;
     private String breed;
-    private String medicalHistory;
-    private String microchipId;
+    private String health;
+    private String characteristics;
     private PetStatus status;
     private List<String> imageUrls;
 

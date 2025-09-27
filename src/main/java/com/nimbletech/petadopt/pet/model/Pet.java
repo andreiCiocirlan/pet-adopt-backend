@@ -22,8 +22,8 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private AnimalType type;
     private String breed;
-    private String medicalHistory;
-    private String microchipId;
+    private String health;
+    private String characteristics;
     @ElementCollection
     @CollectionTable(name = "pet_image_urls", joinColumns = @JoinColumn(name = "pet_id"))
     @Column(name = "image_url")

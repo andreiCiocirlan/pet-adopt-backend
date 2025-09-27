@@ -13,7 +13,7 @@ public class UpdatePetDto {
     private int age;
     private AnimalType type;
     private String breed;
-    private String medicalHistory;
-    private String microchipId;
+    private String health;
+    private String characteristics;
     private List<String> imageUrls;
 }

@@ -52,11 +52,11 @@ public class PetAdoptApplication {
                 List<String> cat3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/1/?bust=1758529534&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/2/?bust=1758529535&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/4/?bust=1758529534&width=1080");
-                Pet dog1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "healthy", "12345", dog1Urls, PetStatus.AVAILABLE));
-                Pet dog2 = petRepository.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "healthy", "12345", dog2Urls, PetStatus.AVAILABLE));
-                Pet cat1 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "healthy", "23456", cat1Urls, PetStatus.ADOPTED));
-                Pet cat2 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "healthy", "23456", cat2Urls, PetStatus.AVAILABLE));
-                Pet cat3 = petRepository.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "healthy", "23456", cat3Urls, PetStatus.AVAILABLE));
+                Pet dog1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "Vaccinations up to date, spayed / neutered.", "Affectionate, Friendly, Gentle, Playful, Smart, Loves", dog1Urls, PetStatus.AVAILABLE));
+                Pet dog2 = petRepository.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "Vaccinations up to date, spayed / neutered.", "Affectionate, Dignified, Curious, Couch, Friendly, Gentle, Independent, Loves, Loyal, Playful, Smart, Quiet\n", dog2Urls, PetStatus.AVAILABLE));
+                Pet cat1 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "Vaccinations up to date, spayed / neutered.", "Affectionate, Loyal, Gentle, Independent, Quiet, Couch Potato", cat1Urls, PetStatus.ADOPTED));
+                Pet cat2 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "Vaccinations up to date, spayed / neutered.", "Friendly, Affectionate, Playful, Curious, Funny, Snuggly", cat2Urls, PetStatus.AVAILABLE));
+                Pet cat3 = petRepository.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "Vaccinations up to date, spayed / neutered.", "Friendly, Loyal, Playful, Funny, Couch Potato, Snuggly, Likes To Be Held", cat3Urls, PetStatus.AVAILABLE));
 
 
                 List<String> bird1Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77773932/1/?bust=1758818114&width=1080",
@@ -68,9 +68,9 @@ public class PetAdoptApplication {
                 List<String> bird3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/1/?bust=1758558904&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/2/?bust=1758558906&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/3/?bust=1758558906&width=1080");
-                Pet bird1 = petRepository.save(new Pet(null, "Mango", 2, AnimalType.BIRD, "Cockatiel", "healthy", "12345", bird1Urls, PetStatus.AVAILABLE));
-                Pet bird2 = petRepository.save(new Pet(null, "Walker", 1, AnimalType.BIRD, "Pigeon", "healthy", "12345", bird2Urls, PetStatus.AVAILABLE));
-                Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "healthy", "12345", bird3Urls, PetStatus.AVAILABLE));
+                Pet bird1 = petRepository.save(new Pet(null, "Mango", 2, AnimalType.BIRD, "Cockatiel", "Vaccinations up to date.", "Chirpy and affectionate", bird1Urls, PetStatus.AVAILABLE));
+                Pet bird2 = petRepository.save(new Pet(null, "Walker", 1, AnimalType.BIRD, "Pigeon", "Vaccinations up to date.", "Chirpy", bird2Urls, PetStatus.AVAILABLE));
+                Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "Vaccinations up to date.", "Affectionate and friendly", bird3Urls, PetStatus.AVAILABLE));
 
                 AdoptionRequest request1 = new AdoptionRequest(null, dog1, user1, LocalDateTime.now(), AdoptionStatus.PENDING);
                 AdoptionRequest request2 = new AdoptionRequest(null, cat1, user2, LocalDateTime.now().minusDays(10), AdoptionStatus.APPROVED);

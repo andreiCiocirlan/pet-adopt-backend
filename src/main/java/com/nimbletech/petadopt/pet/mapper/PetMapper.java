@@ -14,8 +14,8 @@ public class PetMapper {
                 .age(pet.getAge())
                 .type(pet.getType())
                 .breed(pet.getBreed())
-                .medicalHistory(pet.getMedicalHistory())
-                .microchipId(pet.getMicrochipId())
+                .health(pet.getHealth())
+                .characteristics(pet.getCharacteristics())
                 .imageUrls(pet.getImageUrls())
                 .status(pet.getStatus())
                 .build();
@@ -28,8 +28,8 @@ public class PetMapper {
         pet.setAge(petDto.getAge());
         pet.setType(petDto.getType());
         pet.setBreed(petDto.getBreed());
-        pet.setMedicalHistory(petDto.getMedicalHistory());
-        pet.setMicrochipId(petDto.getMicrochipId());
+        pet.setHealth(petDto.getHealth());
+        pet.setCharacteristics(petDto.getCharacteristics());
         pet.setImageUrls(petDto.getImageUrls());
         return pet;
     }

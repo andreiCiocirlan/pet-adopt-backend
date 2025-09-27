@@ -24,11 +24,11 @@ public class PetController {
 
     @GetMapping
     public ResponseEntity<List<PetDto>> searchPets(
-            @RequestParam String animalType,
+            @RequestParam(required = false) AnimalType animalType,
             @RequestParam(required = false) String breed,
             @RequestParam(required = false) Integer age) {
         try {
-            PetSearchRequest searchRequest = new PetSearchRequest(AnimalType.valueOf(animalType.toUpperCase()), breed, age);
+            PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age);
             return searchPetService.execute(searchRequest);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);

@@ -47,4 +47,10 @@ public class User {
         this.status = status;
         this.roles = roles;
     }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.name()))
+                .collect(Collectors.toList());
+    }
 }

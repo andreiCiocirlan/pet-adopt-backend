@@ -47,7 +47,7 @@ public class PetController {
     }
 
     @PatchMapping("/{petId}/clinic/{clinicId}")
-    public ResponseEntity<?> setClinicForPet(@PathVariable String petId, @PathVariable     clinicId) {
+    public ResponseEntity<?> setClinicForPet(@PathVariable String petId, @PathVariable String clinicId) {
         return setClinicForPetService.execute(new SetClinicForPetRequest(petId, clinicId));
     }
 

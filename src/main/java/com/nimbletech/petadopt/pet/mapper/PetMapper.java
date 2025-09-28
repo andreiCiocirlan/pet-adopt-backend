@@ -1,5 +1,6 @@
 package com.nimbletech.petadopt.pet.mapper;
 
+import com.nimbletech.petadopt.clinic.mapper.ClinicMapper;
 import com.nimbletech.petadopt.pet.dto.CreatePetDto;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.model.Pet;
@@ -18,6 +19,7 @@ public class PetMapper {
                 .characteristics(pet.getCharacteristics())
                 .imageUrls(pet.getImageUrls())
                 .status(pet.getStatus())
+                .clinic(ClinicMapper.toDto(pet.getClinic()))
                 .build();
     }
 

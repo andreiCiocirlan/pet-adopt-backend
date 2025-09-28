@@ -1,5 +1,6 @@
 package com.nimbletech.petadopt.pet.dto;
 
+import com.nimbletech.petadopt.clinic.dto.ClinicDto;
 import com.nimbletech.petadopt.pet.model.AnimalType;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,6 @@ public class CreatePetDto {
     private String breed;
     private String health;
     private String characteristics;
+    private ClinicDto clinic;
     private List<String> imageUrls;
 }

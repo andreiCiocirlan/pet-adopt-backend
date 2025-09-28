@@ -1,6 +1,7 @@
 package com.nimbletech.petadopt.pet.model;
 
 import com.nimbletech.petadopt.appointment.model.Appointment;
+import com.nimbletech.petadopt.clinic.model.Clinic;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,7 +37,11 @@ public class Pet {
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 
-    public Pet(String id, String name, int age, AnimalType type, String breed, String health, String characteristics, List<String> imageUrls, PetStatus status) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clinic_id")
+    private Clinic clinic;
+
+    public Pet(String id, String name, int age, AnimalType type, String breed, String health, String characteristics, List<String> imageUrls, PetStatus status, Clinic clinic) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -46,6 +51,7 @@ public class Pet {
         this.characteristics = characteristics;
         this.imageUrls = imageUrls;
         this.status = status;
+        this.clinic = clinic;
     }
 }
 

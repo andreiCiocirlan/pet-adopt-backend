@@ -21,6 +21,7 @@ public class PetController {
     private final GetPetByIdService getPetByIdService;
     private final SearchPetService searchPetService;
     private final AdoptPetService adoptPetService;
+    private final SetClinicForPetService setClinicForPetService;
 
     @GetMapping
     public ResponseEntity<List<PetDto>> searchPets(
@@ -43,6 +44,11 @@ public class PetController {
     @PostMapping
     public ResponseEntity<PetDto> createPet(@RequestBody CreatePetDto petDto) {
         return createPetService.execute(petDto);
+    }
+
+    @PatchMapping("/{petId}/clinic/{clinicId}")
+    public ResponseEntity<?> setClinicForPet(@PathVariable String petId, @PathVariable     clinicId) {
+        return setClinicForPetService.execute(new SetClinicForPetRequest(petId, clinicId));
     }
 
     @PutMapping("/{id}")

@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/users/register", "/api/appointments/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/api/users/register", "/api/appointments/**", "/api/clinics/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/pets/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
@@ -71,7 +71,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Your frontend origin
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
 

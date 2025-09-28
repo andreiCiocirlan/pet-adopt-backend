@@ -4,6 +4,8 @@ import com.nimbletech.petadopt.appointment.model.Appointment;
 import com.nimbletech.petadopt.appointment.model.AppointmentReason;
 import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
 import com.nimbletech.petadopt.appointment.repository.AppointmentRepository;
+import com.nimbletech.petadopt.clinic.model.Clinic;
+import com.nimbletech.petadopt.clinic.repository.ClinicRepository;
 import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.pet.model.PetStatus;
@@ -33,10 +35,28 @@ public class PetAdoptApplication {
     public ApplicationRunner dataLoader(BCryptPasswordEncoder passwordEncoder,
                                         PetRepository petRepository,
                                         UserRepository userRepository,
-                                        AppointmentRepository appointmentRepository) {
+                                        AppointmentRepository appointmentRepository,
+                                        ClinicRepository clinicRepository) {
         return args -> {
             boolean emptyDatabase = petRepository.count() == 0 && userRepository.count() == 0 && appointmentRepository.count() == 0;
             if (emptyDatabase) {
+                Clinic clinic1 = new Clinic();
+                clinic1.setName("Downtown Pet Clinic");
+                clinic1.setAddress("123 Main St, Cityville");
+                clinic1.setPhoneNumber("123-456-7890");
+                clinic1.setLatitude(40.712776);
+                clinic1.setLongitude(-74.005974);
+                clinicRepository.save(clinic1);
+
+                Clinic clinic2 = new Clinic();
+                clinic2.setName("Uptown Animal Hospital");
+                clinic2.setAddress("789 Broadway, Metropolis");
+                clinic2.setPhoneNumber("987-654-3210");
+                clinic2.setLatitude(40.730610);
+                clinic2.setLongitude(-73.935242);
+                clinicRepository.save(clinic2);
+
+
                 String password = passwordEncoder.encode("test123");
                 User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT, Set.of(Role.ROLE_USER)));
                 User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", password, UserStatus.ADOPTER, Set.of(Role.ROLE_ADMIN)));
@@ -55,11 +75,11 @@ public class PetAdoptApplication {
                 List<String> cat3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/1/?bust=1758529534&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/2/?bust=1758529535&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77682103/4/?bust=1758529534&width=1080");
-                Pet dog1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "Vaccinations up to date, spayed / neutered.", "Affectionate, Friendly, Gentle, Playful, Smart, Loves", dog1Urls, PetStatus.AVAILABLE));
-                Pet dog2 = petRepository.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "Vaccinations up to date, spayed / neutered.", "Affectionate, Dignified, Curious, Couch, Friendly, Gentle, Independent, Loves, Loyal, Playful, Smart, Quiet\n", dog2Urls, PetStatus.AVAILABLE));
-                Pet cat1 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "Vaccinations up to date, spayed / neutered.", "Affectionate, Loyal, Gentle, Independent, Quiet, Couch Potato", cat1Urls, PetStatus.ADOPTED));
-                Pet cat2 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "Vaccinations up to date, spayed / neutered.", "Friendly, Affectionate, Playful, Curious, Funny, Snuggly", cat2Urls, PetStatus.AVAILABLE));
-                Pet cat3 = petRepository.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "Vaccinations up to date, spayed / neutered.", "Friendly, Loyal, Playful, Funny, Couch Potato, Snuggly, Likes To Be Held", cat3Urls, PetStatus.AVAILABLE));
+                Pet dog1 = petRepository.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "Vaccinations up to date, spayed / neutered.", "Affectionate, Friendly, Gentle, Playful, Smart, Loves", dog1Urls, PetStatus.AVAILABLE, clinic1));
+                Pet dog2 = petRepository.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "Vaccinations up to date, spayed / neutered.", "Affectionate, Dignified, Curious, Couch, Friendly, Gentle, Independent, Loves, Loyal, Playful, Smart, Quiet", dog2Urls, PetStatus.AVAILABLE, clinic1));
+                Pet cat1 = petRepository.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "Vaccinations up to date, spayed / neutered.", "Affectionate, Loyal, Gentle, Independent, Quiet, Couch Potato", cat1Urls, PetStatus.ADOPTED, clinic1));
+                Pet cat2 = petRepository.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "Vaccinations up to date, spayed / neutered.", "Friendly, Affectionate, Playful, Curious, Funny, Snuggly", cat2Urls, PetStatus.AVAILABLE, clinic1));
+                Pet cat3 = petRepository.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "Vaccinations up to date, spayed / neutered.", "Friendly, Loyal, Playful, Funny, Couch Potato, Snuggly, Likes To Be Held", cat3Urls, PetStatus.AVAILABLE, clinic1));
 
 
                 List<String> bird1Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/77773932/1/?bust=1758818114&width=1080",
@@ -71,9 +91,9 @@ public class PetAdoptApplication {
                 List<String> bird3Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/1/?bust=1758558904&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/2/?bust=1758558906&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/78380993/3/?bust=1758558906&width=1080");
-                Pet bird1 = petRepository.save(new Pet(null, "Mango", 2, AnimalType.BIRD, "Cockatiel", "Vaccinations up to date.", "Chirpy and affectionate", bird1Urls, PetStatus.AVAILABLE));
-                Pet bird2 = petRepository.save(new Pet(null, "Walker", 1, AnimalType.BIRD, "Pigeon", "Vaccinations up to date.", "Chirpy", bird2Urls, PetStatus.AVAILABLE));
-                Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "Vaccinations up to date.", "Affectionate and friendly", bird3Urls, PetStatus.AVAILABLE));
+                Pet bird1 = petRepository.save(new Pet(null, "Mango", 2, AnimalType.BIRD, "Cockatiel", "Vaccinations up to date.", "Chirpy and affectionate", bird1Urls, PetStatus.AVAILABLE, clinic2));
+                Pet bird2 = petRepository.save(new Pet(null, "Walker", 1, AnimalType.BIRD, "Pigeon", "Vaccinations up to date.", "Chirpy", bird2Urls, PetStatus.AVAILABLE, clinic2));
+                Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "Vaccinations up to date.", "Affectionate and friendly", bird3Urls, PetStatus.AVAILABLE, clinic2));
 
                 Appointment appointment1 = new Appointment(null, dog1, user1, LocalDateTime.now(), AppointmentStatus.PENDING, AppointmentReason.MEET_AND_GREET);
                 Appointment appointment2 = new Appointment(null, cat1, user2, LocalDateTime.now().minusDays(10), AppointmentStatus.PENDING, AppointmentReason.FOLLOW_UP);

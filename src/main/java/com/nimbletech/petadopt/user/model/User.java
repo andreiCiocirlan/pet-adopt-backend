@@ -46,12 +46,13 @@ public class User {
     @Column(unique = true)
     private String googleId;
 
-    public User(Long id, String name, String email, String password, UserStatus status, Set<Role> roles) {
+    public User(Long id, String name, String email, String password, UserStatus status, String phone, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.status = status;
+        this.phone = phone;
         this.roles = roles;
     }
 

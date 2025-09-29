@@ -58,8 +58,8 @@ public class PetAdoptApplication {
 
 
                 String password = passwordEncoder.encode("test123");
-                User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT, Set.of(Role.ROLE_USER)));
-                User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", password, UserStatus.ADOPTER, Set.of(Role.ROLE_ADMIN)));
+                User user1 = userRepository.save(new User(null, "Alice Johnson", "alice@example.com", password, UserStatus.APPLICANT, "4151254", Set.of(Role.ROLE_USER)));
+                User user2 = userRepository.save(new User(null, "Bob Smith", "bob@example.com", password, UserStatus.ADOPTER, "4151254", Set.of(Role.ROLE_ADMIN)));
 
                 List<String> dog1Urls = List.of("https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/76296695/1/?bust=1758539460&width=1080",
                         "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/76296695/2/?bust=1758539460&width=1080",

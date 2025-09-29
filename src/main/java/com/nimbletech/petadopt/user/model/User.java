@@ -2,7 +2,10 @@ package com.nimbletech.petadopt.user.model;
 
 import com.nimbletech.petadopt.appointment.model.Appointment;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -16,7 +19,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "users")
 public class User {
@@ -32,9 +34,6 @@ public class User {
     private String address;
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private UserStatus status;
-
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;
 
@@ -46,12 +45,11 @@ public class User {
     @Column(unique = true)
     private String googleId;
 
-    public User(Long id, String name, String email, String password, UserStatus status, String phone, Set<Role> roles) {
+    public User(Long id, String name, String email, String password, String phone, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.status = status;
         this.phone = phone;
         this.roles = roles;
     }

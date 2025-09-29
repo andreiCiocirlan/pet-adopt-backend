@@ -31,7 +31,6 @@ public class UpdateUserService implements Command<UserUpdateRequest, UserDto> {
                     existing.setEmail(dto.getEmail());
                     existing.setPhone(dto.getPhone());
                     existing.setAddress(dto.getAddress());
-                    existing.setStatus(dto.getStatus());
                     User updated = userRepository.save(existing);
                     return ResponseEntity.ok(UserMapper.toDto(updated));
                 })

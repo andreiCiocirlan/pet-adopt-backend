@@ -1,6 +1,5 @@
 package com.nimbletech.petadopt.user.dto;
 
-import com.nimbletech.petadopt.user.model.UserStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,5 +12,4 @@ public class UserDto {
     private String email;
     private String phone;
     private String address;
-    private UserStatus status;
 }

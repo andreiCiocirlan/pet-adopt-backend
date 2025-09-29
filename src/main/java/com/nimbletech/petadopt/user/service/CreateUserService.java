@@ -6,7 +6,6 @@ import com.nimbletech.petadopt.user.dto.UserDto;
 import com.nimbletech.petadopt.user.mapper.UserMapper;
 import com.nimbletech.petadopt.user.model.Role;
 import com.nimbletech.petadopt.user.model.User;
-import com.nimbletech.petadopt.user.model.UserStatus;
 import com.nimbletech.petadopt.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,6 @@ public class CreateUserService implements Command<CreateUserDto, UserDto> {
     public ResponseEntity<UserDto> execute(CreateUserDto dto) {
         log.info("Executing {}", getClass().getSimpleName());
         User user = UserMapper.toEntity(dto);
-        user.setStatus(UserStatus.APPLICANT);
 
         String hashedPassword = passwordEncoder.encode(dto.getPassword());
         user.setPassword(hashedPassword);

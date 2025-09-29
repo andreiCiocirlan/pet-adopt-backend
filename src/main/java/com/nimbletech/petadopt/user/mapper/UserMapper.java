@@ -14,7 +14,6 @@ public class UserMapper {
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .address(user.getAddress())
-                .status(user.getStatus())
                 .build();
     }
 

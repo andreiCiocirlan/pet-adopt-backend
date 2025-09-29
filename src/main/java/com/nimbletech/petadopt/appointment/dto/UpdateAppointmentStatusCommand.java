@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class UpdateAppointmentStatusCommand {
     private Long appointmentId;
-    private UpdateAppointmentRequest updateAppointmentRequest;
+    private UpdateAppointmentStatusRequest updateAppointmentRequest;
 
 }

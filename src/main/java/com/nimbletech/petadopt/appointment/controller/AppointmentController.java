@@ -2,8 +2,8 @@ package com.nimbletech.petadopt.appointment.controller;
 
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
 import com.nimbletech.petadopt.appointment.dto.CreateAppointmentCommand;
-import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusCommand;
+import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.service.CreateAppointmentService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsByUserIdService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsService;
@@ -44,9 +44,9 @@ public class AppointmentController {
         }
     }
 
-    @PutMapping("/{id}/status")
-    public ResponseEntity<AppointmentDto> updateAppointmentStatus(@PathVariable("id") Long id,
-                                                     @Valid @RequestBody UpdateAppointmentRequest request) {
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<AppointmentDto> updateAppointmentStatus(@PathVariable Long id,
+                                                                  @Valid @RequestBody UpdateAppointmentStatusRequest request) {
         try {
             return updateAppointmentStatusService.execute(new UpdateAppointmentStatusCommand(id, request));
         } catch (IllegalArgumentException e) {

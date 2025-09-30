@@ -1,5 +1,6 @@
 package com.nimbletech.petadopt.user.controller;
 
+import com.nimbletech.petadopt.user.controller.exceptions.EmailAlreadyExistsException;
 import com.nimbletech.petadopt.user.dto.CreateUserDto;
 import com.nimbletech.petadopt.user.dto.UpdateUserDto;
 import com.nimbletech.petadopt.user.dto.UserDto;
@@ -7,10 +8,13 @@ import com.nimbletech.petadopt.user.dto.UserUpdateRequest;
 import com.nimbletech.petadopt.user.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
@@ -48,5 +52,12 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         return deleteUserService.execute(id);
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 }

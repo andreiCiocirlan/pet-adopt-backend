@@ -1,6 +1,7 @@
 package com.nimbletech.petadopt.user.service;
 
 import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.user.controller.exceptions.EmailAlreadyExistsException;
 import com.nimbletech.petadopt.user.dto.CreateUserDto;
 import com.nimbletech.petadopt.user.dto.UserDto;
 import com.nimbletech.petadopt.user.mapper.UserMapper;
@@ -28,6 +29,9 @@ public class CreateUserService implements Command<CreateUserDto, UserDto> {
     public ResponseEntity<UserDto> execute(CreateUserDto dto) {
         log.info("Executing {}", getClass().getSimpleName());
         User user = UserMapper.toEntity(dto);
+        userRepository.findByEmail(dto.getEmail()).ifPresent(u -> {
+            throw new EmailAlreadyExistsException("Email is already in use");
+        });
 
         String hashedPassword = passwordEncoder.encode(dto.getPassword());
         user.setPassword(hashedPassword);

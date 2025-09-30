@@ -2,6 +2,7 @@ package com.nimbletech.petadopt.pet.controller;
 
 import com.nimbletech.petadopt.pet.dto.*;
 import com.nimbletech.petadopt.pet.model.AnimalType;
+import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,10 @@ public class PetController {
     public ResponseEntity<List<PetDto>> searchPets(
             @RequestParam(required = false) AnimalType animalType,
             @RequestParam(required = false) String breed,
-            @RequestParam(required = false) Integer age) {
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) PetStatus status) {
         try {
-            PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age);
+            PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status);
             return searchPetService.execute(searchRequest);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);

@@ -26,7 +26,7 @@ public class SearchPetService implements Query<PetSearchRequest, List<PetDto>> {
         log.info("Executing {} with filters: animalType={}, breed={}, age={}", getClass().getSimpleName(),
                 request.animalType(), request.breed(), request.age());
 
-        List<Pet> pets = petRepository.findPetsByFilters(request.animalType(), request.breed(), request.age());
+        List<Pet> pets = petRepository.findPetsByFilters(request.animalType(), request.breed(), request.age(), request.status());
 
         List<PetDto> petDtos = pets.stream()
                 .map(PetMapper::toDto)

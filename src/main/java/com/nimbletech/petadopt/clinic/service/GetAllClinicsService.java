@@ -21,7 +21,7 @@ public class GetAllClinicsService implements Query<Void, List<ClinicDto>> {
 
     @Override
     public ResponseEntity<List<ClinicDto>> execute(Void input) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Getting all clinics");
         List<Clinic> clinics = clinicRepository.findAll();
         List<ClinicDto> dtoList = clinics.stream()
                 .map(ClinicMapper::toDto)

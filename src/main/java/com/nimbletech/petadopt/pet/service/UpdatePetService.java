@@ -20,7 +20,7 @@ public class UpdatePetService implements Command<PetUpdateRequest, PetDto> {
 
     @Override
     public ResponseEntity<PetDto> execute(PetUpdateRequest updateRequest) {
-        log.info("Executing {} ", getClass().getSimpleName());
+        log.info("Updating user with id={}", updateRequest.getId());
         return petRepository.findById(updateRequest.getId())
             .map(existingPet -> {
                 existingPet.setName(updateRequest.getUpdatePetDto().getName());

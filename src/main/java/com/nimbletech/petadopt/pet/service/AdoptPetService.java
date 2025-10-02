@@ -20,7 +20,7 @@ public class AdoptPetService implements Command<String, PetDto> {
 
     @Override
     public ResponseEntity<PetDto> execute(String petId) {
-        log.info("Executing {} ", getClass().getSimpleName());
+        log.info("Pet with id={} was adopted", petId);
         return petRepository.findById(petId)
                 .map(existingPet -> {
                     existingPet.setStatus(PetStatus.ADOPTED);

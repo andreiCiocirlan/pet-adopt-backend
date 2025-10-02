@@ -18,7 +18,7 @@ public class GetPetByIdService implements Query<String, PetDto> {
 
     @Override
     public ResponseEntity<PetDto> execute(String id) {
-        log.info("Executing {} ", getClass().getSimpleName());
+        log.info("Getting pet with id={} ", id);
         return petRepository.findById(id)
             .map(PetMapper::toDto)
             .map(ResponseEntity::ok)

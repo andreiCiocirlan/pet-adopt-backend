@@ -21,7 +21,7 @@ public class GetAppointmentsService implements Query<Void, List<AppointmentDto>>
 
     @Override
     public ResponseEntity<List<AppointmentDto>> execute(Void input) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Getting all appointments");
         List<Appointment> appointments = appointmentRepository.findAll();
         List<AppointmentDto> dtoList = appointments.stream()
                 .map(AppointmentMapper::toDto)

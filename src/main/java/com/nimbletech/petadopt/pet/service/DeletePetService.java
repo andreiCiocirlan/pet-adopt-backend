@@ -16,7 +16,7 @@ public class DeletePetService implements Command<String, Void> {
 
     @Override
     public ResponseEntity<Void> execute(String id) {
-        log.info("Executing {} ", getClass().getSimpleName());
+        log.info("Deleting pet with id={} ", id);
         if (!petRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

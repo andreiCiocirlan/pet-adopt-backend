@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 
         @Override
         public ResponseEntity<PetDto> execute(CreatePetDto petDto) {
-            log.info("Executing {}", getClass().getSimpleName());
+            log.info("Creating pet with name={}, breed={}, clinicId={}", petDto.getName(), petDto.getBreed(), petDto.getClinicId());
             Pet pet = PetMapper.toEntity(petDto);
             Clinic clinic = clinicRepository.findById(petDto.getClinicId())
                             .orElseThrow(() -> new EntityNotFoundException("Clinic not found"));

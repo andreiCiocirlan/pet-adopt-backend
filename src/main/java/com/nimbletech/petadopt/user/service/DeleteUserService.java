@@ -16,7 +16,7 @@ public class DeleteUserService implements Command<Long, Void> {
 
     @Override
     public ResponseEntity<Void> execute(Long id) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Deleting user with id={}", id);
         if (!userRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

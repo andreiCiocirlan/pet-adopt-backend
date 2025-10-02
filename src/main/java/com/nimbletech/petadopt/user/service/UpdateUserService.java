@@ -23,7 +23,7 @@ public class UpdateUserService implements Command<UserUpdateRequest, UserDto> {
     public ResponseEntity<UserDto> execute(UserUpdateRequest updateRequest) {
         Long id = updateRequest.getId();
         UpdateUserDto dto = updateRequest.getUpdateUserDto();
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Updating user with id={}", id);
 
         return userRepository.findById(id)
                 .map(existing -> {

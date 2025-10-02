@@ -21,7 +21,7 @@ public class GetUsersService implements Query<Void, List<UserDto>> {
 
     @Override
     public ResponseEntity<List<UserDto>> execute(Void input) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Getting all users");
         List<User> users = userRepository.findAll();
         List<UserDto> dtoList = users.stream()
                                         .map(UserMapper::toDto)

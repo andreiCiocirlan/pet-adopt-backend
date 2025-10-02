@@ -18,7 +18,7 @@ public class GetUserByIdService implements Query<Long, UserDto> {
 
     @Override
     public ResponseEntity<UserDto> execute(Long id) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Getting user by id={}", id);
         return userRepository.findById(id)
                 .map(UserMapper::toDto)
                 .map(ResponseEntity::ok)

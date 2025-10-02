@@ -21,7 +21,7 @@ public class GetAppointmentsByUserIdService implements Query<Long, List<Appointm
 
     @Override
     public ResponseEntity<List<AppointmentDto>> execute(Long userId) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Getting appointment for userId={}", userId);
         List<Appointment> appointments = appointmentRepository.findByUserId(userId);
 
         List<AppointmentDto> appointmentsDto = appointments.stream()

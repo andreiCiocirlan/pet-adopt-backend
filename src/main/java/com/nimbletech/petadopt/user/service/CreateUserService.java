@@ -27,7 +27,7 @@ public class CreateUserService implements Command<CreateUserDto, UserDto> {
 
     @Override
     public ResponseEntity<UserDto> execute(CreateUserDto dto) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Creating user with email={}", dto.getEmail());
         User user = UserMapper.toEntity(dto);
         userRepository.findByEmail(dto.getEmail()).ifPresent(u -> {
             throw new EmailAlreadyExistsException("Email is already in use");

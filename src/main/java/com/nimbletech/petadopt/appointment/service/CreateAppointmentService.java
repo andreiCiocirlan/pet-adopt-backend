@@ -28,7 +28,9 @@ public class CreateAppointmentService implements Command<CreateAppointmentComman
 
     @Override
     public ResponseEntity<AppointmentDto> execute(CreateAppointmentCommand cmd) {
-        log.info("Executing {}", getClass().getSimpleName());
+        log.info("Creating appointment for userId={} and petId={} on {} for reason: {}",
+                cmd.getUserId(), cmd.getPetId(), cmd.getAppointmentDate(), cmd.getAppointmentReason());
+
         User user = userRepository.findById(cmd.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         Pet pet = petRepository.findById(cmd.getPetId())

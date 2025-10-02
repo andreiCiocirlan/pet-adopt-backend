@@ -23,7 +23,7 @@ public class SearchPetService implements Query<PetSearchRequest, List<PetDto>> {
 
     @Override
     public ResponseEntity<List<PetDto>> execute(PetSearchRequest request) {
-        log.info("Executing {} with filters: animalType={}, breed={}, age={}", getClass().getSimpleName(),
+        log.info("Searching pets with filters: animalType={}, breed={}, age={}",
                 request.animalType(), request.breed(), request.age());
 
         List<Pet> pets = petRepository.findPetsByFilters(request.animalType(), request.breed(), request.age(), request.status());

@@ -29,7 +29,7 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
     @Override
     public ResponseEntity<AppointmentDto> execute(CreateAppointmentRequest cmd) {
         log.info("Creating appointment for userId={} and petId={} on {} for reason: {}",
-                cmd.getUserId(), cmd.getPetId(), cmd.getAppointmentDate(), cmd.getAppointmentReason());
+                cmd.getUserId(), cmd.getPetId(), cmd.getAppointmentDateTime(), cmd.getAppointmentReason());
 
         User user = userRepository.findById(cmd.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
@@ -39,7 +39,7 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
         Appointment appointment = new Appointment();
         appointment.setUser(user);
         appointment.setPet(pet);
-        appointment.setAppointmentDate(cmd.getAppointmentDate());
+        appointment.setAppointmentDateTime(cmd.getAppointmentDateTime());
         appointment.setAppointmentReason(cmd.getAppointmentReason());
         appointment.setStatus(AppointmentStatus.PENDING);
 

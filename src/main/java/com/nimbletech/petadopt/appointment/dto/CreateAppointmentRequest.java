@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class CreateAppointmentRequest {
     private String petId;
     private Long userId;
-    private LocalDateTime appointmentDate;
+    private LocalDateTime appointmentDateTime;
     private AppointmentReason appointmentReason;
 
 }

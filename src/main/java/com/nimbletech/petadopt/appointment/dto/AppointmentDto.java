@@ -13,7 +13,7 @@ public class AppointmentDto {
     private Long id;
     private String petId;
     private Long userId;
-    private LocalDateTime appointmentDate;
+    private LocalDateTime appointmentDateTime;
     private String status;
     private String appointmentReason;
 

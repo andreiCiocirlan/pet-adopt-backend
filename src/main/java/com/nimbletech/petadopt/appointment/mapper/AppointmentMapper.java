@@ -19,7 +19,7 @@ public class AppointmentMapper {
                 appointment.getId(),
                 appointment.getPet().getId(),
                 appointment.getUser().getId(),
-                appointment.getAppointmentDate(),
+                appointment.getAppointmentDateTime(),
                 appointment.getStatus().name(),
                 appointment.getAppointmentReason().name()
         );

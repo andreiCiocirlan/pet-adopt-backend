@@ -25,7 +25,7 @@ public class Appointment {
     @ManyToOne
     private User user;
 
-    private LocalDateTime appointmentDate;
+    private LocalDateTime appointmentDateTime;
 
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;

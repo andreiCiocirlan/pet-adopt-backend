@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Data
-public class CreateAppointmentCommand {
+public class CreateAppointmentRequest {
     private String petId;
     private Long userId;
     private LocalDateTime appointmentDate;

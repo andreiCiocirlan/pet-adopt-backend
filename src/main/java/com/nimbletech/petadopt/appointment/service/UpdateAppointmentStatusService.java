@@ -2,7 +2,7 @@ package com.nimbletech.petadopt.appointment.service;
 
 import com.nimbletech.petadopt.Command;
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
-import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusCommand;
+import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.mapper.AppointmentMapper;
 import com.nimbletech.petadopt.appointment.model.Appointment;
 import com.nimbletech.petadopt.appointment.repository.AppointmentRepository;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class UpdateAppointmentStatusService implements Command<UpdateAppointmentStatusCommand, AppointmentDto> {
+public class UpdateAppointmentStatusService implements Command<UpdateAppointmentStatusRequest, AppointmentDto> {
 
     private final AppointmentRepository appointmentRepository;
 
     @Override
-    public ResponseEntity<AppointmentDto> execute(UpdateAppointmentStatusCommand cmd) {
+    public ResponseEntity<AppointmentDto> execute(UpdateAppointmentStatusRequest cmd) {
         log.info("Updating appointment with id={} to status={}", cmd.getAppointmentId(), cmd.getUpdateAppointmentRequest().getStatus());
         Appointment appointment = appointmentRepository.findById(cmd.getAppointmentId())
                 .orElseThrow(() -> new EntityNotFoundException("Appointment not found"));

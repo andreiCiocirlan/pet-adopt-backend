@@ -2,7 +2,7 @@ package com.nimbletech.petadopt.appointment.service;
 
 import com.nimbletech.petadopt.Command;
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
-import com.nimbletech.petadopt.appointment.dto.CreateAppointmentCommand;
+import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.mapper.AppointmentMapper;
 import com.nimbletech.petadopt.appointment.model.Appointment;
 import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
@@ -20,14 +20,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class CreateAppointmentService implements Command<CreateAppointmentCommand, AppointmentDto> {
+public class CreateAppointmentService implements Command<CreateAppointmentRequest, AppointmentDto> {
 
     private final AppointmentRepository appointmentRepository;
     private final UserRepository userRepository;
     private final PetRepository petRepository;
 
     @Override
-    public ResponseEntity<AppointmentDto> execute(CreateAppointmentCommand cmd) {
+    public ResponseEntity<AppointmentDto> execute(CreateAppointmentRequest cmd) {
         log.info("Creating appointment for userId={} and petId={} on {} for reason: {}",
                 cmd.getUserId(), cmd.getPetId(), cmd.getAppointmentDate(), cmd.getAppointmentReason());
 

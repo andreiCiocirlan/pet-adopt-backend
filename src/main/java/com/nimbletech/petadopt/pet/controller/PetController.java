@@ -5,9 +5,14 @@ import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.service.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -23,6 +28,7 @@ public class PetController {
     private final SearchPetService searchPetService;
     private final AdoptPetService adoptPetService;
     private final SetClinicForPetService setClinicForPetService;
+    private final RestTemplate restTemplate;
 
     @GetMapping
     public ResponseEntity<List<PetDto>> searchPets(
@@ -67,5 +73,18 @@ public class PetController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePet(@PathVariable String id) {
         return deletePetService.execute(id);
+    }
+
+    @GetMapping("/image")
+    public ResponseEntity<byte[]> downloadImage(@RequestParam("url") String imageUrl) throws IOException {
+        // Fetch the image from the external URL
+        byte[] imageBytes = restTemplate.getForObject(imageUrl, byte[].class);
+
+        // Retrieve content type from the response (optional, for accuracy)
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG); // Default fallback
+        headers.setContentLength(imageBytes.length);
+
+        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
     }
 }

@@ -9,5 +9,6 @@ public record PetSearchRequest(
         AnimalType animalType,
         String breed,
         Integer age,
-        PetStatus status) {
+        PetStatus status,
+        String clinicId) {
 }

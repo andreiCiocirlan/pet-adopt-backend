@@ -35,9 +35,10 @@ public class PetController {
             @RequestParam(required = false) AnimalType animalType,
             @RequestParam(required = false) String breed,
             @RequestParam(required = false) Integer age,
-            @RequestParam(required = false) PetStatus status) {
+            @RequestParam(required = false) PetStatus status,
+            @RequestParam(required = false) String clinicId) {
         try {
-            PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status);
+            PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status, clinicId);
             return searchPetService.execute(searchRequest);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);

@@ -23,10 +23,10 @@ public class SearchPetService implements Query<PetSearchRequest, List<PetDto>> {
 
     @Override
     public ResponseEntity<List<PetDto>> execute(PetSearchRequest request) {
-        log.info("Searching pets with filters: animalType={}, breed={}, age={}",
-                request.animalType(), request.breed(), request.age());
+        log.info("Searching pets with filters: animalType={}, breed={}, age={}, clinicId={}",
+                request.animalType(), request.breed(), request.age(), request.clinicId());
 
-        List<Pet> pets = petRepository.findPetsByFilters(request.animalType(), request.breed(), request.age(), request.status());
+        List<Pet> pets = petRepository.findPetsByFilters(request.animalType(), request.breed(), request.age(), request.status(), request.clinicId());
 
         List<PetDto> petDtos = pets.stream()
                 .map(PetMapper::toDto)

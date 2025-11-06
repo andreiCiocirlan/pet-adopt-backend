@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nimbletech</groupId>
-	<artifactId>pet-adopt</artifactId>
+	<artifactId>pet-adopt-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pet-adopt</name>
+	<name>pet-adopt-backend</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

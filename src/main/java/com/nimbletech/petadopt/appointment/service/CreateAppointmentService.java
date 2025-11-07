@@ -41,7 +41,8 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
         appointment.setPet(pet);
         appointment.setAppointmentDateTime(cmd.getAppointmentDateTime());
         appointment.setAppointmentReason(cmd.getAppointmentReason());
-        appointment.setStatus(AppointmentStatus.PENDING);
+        AppointmentStatus appointmentStatus = cmd.getAppointmentStatus() != null ? cmd.getAppointmentStatus() : AppointmentStatus.PENDING;
+        appointment.setStatus(appointmentStatus);
 
         appointment = appointmentRepository.save(appointment);
         return ResponseEntity.ok(AppointmentMapper.toDto(appointment));

@@ -101,6 +101,7 @@ public class AuthController {
 
             // Generate JWT using user info and roles
             String token = jwtUtil.generateToken(user.getEmail(), user.getId(), user.getAuthorities());
+            log.info("Generated token {} for userId {}", token, user.getId());
             return ResponseEntity.ok(Map.of("token", token));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Failed to authenticate with Google"));

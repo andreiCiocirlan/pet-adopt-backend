@@ -95,14 +95,10 @@ public class PetAdoptApplication {
                 Pet bird3 = petRepository.save(new Pet(null, "Nugget", 1, AnimalType.BIRD, "Parrot", "Vaccinations up to date.", "Affectionate and friendly", bird3Urls, PetStatus.AVAILABLE, clinic2));
 
                 Appointment appointment1 = new Appointment(null, dog1, user1, LocalDateTime.now().plusDays(5), AppointmentStatus.PENDING, AppointmentReason.MEET_AND_GREET);
-                Appointment appointment2 = new Appointment(null, cat1, user2, LocalDateTime.now().plusDays(10), AppointmentStatus.PENDING, AppointmentReason.FOLLOW_UP);
                 Appointment appointment3 = new Appointment(null, dog2, user1, LocalDateTime.now().plusDays(5), AppointmentStatus.CONFIRMED, AppointmentReason.MEET_AND_GREET);
-                Appointment appointment4 = new Appointment(null, cat2, user2, LocalDateTime.now().plusDays(10), AppointmentStatus.COMPLETED, AppointmentReason.MEDICAL_CHECKUP);
 
                 appointmentRepository.save(appointment1);
-                appointmentRepository.save(appointment2);
                 appointmentRepository.save(appointment3);
-                appointmentRepository.save(appointment4);
             }
         };
     }

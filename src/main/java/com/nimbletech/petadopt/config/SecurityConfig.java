@@ -51,14 +51,15 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/users/register", "/api/appointments/**", "/api/clinics/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/pets/**").permitAll()
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/appointments/user/**").authenticated()
+                        .requestMatchers("/api/appointments/**").permitAll()
+                        .requestMatchers("/api/clinics/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
                         .anyRequest().authenticated()
-                )
-                .oauth2Login(oauth2 -> oauth2
-                        .defaultSuccessUrl("/api/pets", true)
                 );
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

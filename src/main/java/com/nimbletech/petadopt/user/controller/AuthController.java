@@ -17,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import static com.nimbletech.petadopt.jwt.JwtUtil.REFRESH_SECRET_KEY;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -37,6 +40,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
+    private final UserDetailsService userDetailsService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
@@ -45,37 +49,58 @@ public class AuthController {
             String password = loginData.get("password");
 
             Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(email, password)
-            );
-
+                    new UsernamePasswordAuthenticationToken(email, password));
 
             CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
             Long userId = userDetails.getId();
 
-            String token = jwtUtil.generateToken(userDetails.getUsername(), userId, userDetails.getAuthorities());
-            log.info("Generated token {} for userId {}", token, userId);
+            String accessToken = jwtUtil.generateAccessToken(userDetails.getUsername(), userId, userDetails.getAuthorities());
+            String refreshToken = jwtUtil.generateRefreshToken(userDetails.getUsername());
 
-            return ResponseEntity.ok(Map.of("token", token));
+            return ResponseEntity.ok(Map.of(
+                    "accessToken", accessToken,
+                    "refreshToken", refreshToken
+            ));
         } catch (AuthenticationException e) {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid email or password"));
+        }
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refresh(@RequestBody Map<String, String> request) {
+        try {
+            String refreshToken = request.get("refreshToken");
+            String username = jwtUtil.extractUsername(refreshToken, REFRESH_SECRET_KEY);
+
+            boolean isValid = jwtUtil.validateRefreshToken(refreshToken, username);
+            if (!isValid) {
+                return ResponseEntity.status(401).body(Map.of("error", "Invalid refresh token"));
+            }
+
+            User user = userRepository.findByEmail(username).orElseThrow();
+            String newAccessToken = jwtUtil.generateAccessToken(username, user.getId(),
+                    userDetailsService.loadUserByUsername(username).getAuthorities());
+
+            return ResponseEntity.ok(Map.of("accessToken", newAccessToken));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body(Map.of("error", "Refresh failed"));
         }
     }
 
     @PostMapping("/google-login")
     public ResponseEntity<?> googleLogin(@RequestBody Map<String, String> body) {
         String idTokenString = body.get("token");
-        GoogleIdToken.Payload payload;
 
         try {
             GoogleIdToken idToken = verifyGoogleToken(idTokenString);
 
             if (idToken == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid Google ID token"));
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(Map.of("error", "Invalid Google ID token"));
             }
 
-            payload = idToken.getPayload();
-
-            String googleId = payload.getSubject(); // Google user ID
+            GoogleIdToken.Payload payload = idToken.getPayload();
+            String googleId = payload.getSubject();
             String email = payload.getEmail();
             String name = (String) payload.get("name");
 
@@ -99,12 +124,22 @@ public class AuthController {
                 userRepository.save(user);
             }
 
-            // Generate JWT using user info and roles
-            String token = jwtUtil.generateToken(user.getEmail(), user.getId(), user.getAuthorities());
-            log.info("Generated token {} for userId {}", token, user.getId());
-            return ResponseEntity.ok(Map.of("token", token));
+            // Generate BOTH tokens using updated JwtUtil methods
+            String accessToken = jwtUtil.generateAccessToken(
+                    user.getEmail(),
+                    user.getId(),
+                    user.getAuthorities()
+            );
+            String refreshToken = jwtUtil.generateRefreshToken(user.getEmail());
+
+            log.info("Generated tokens for Google userId {}", user.getId());
+            return ResponseEntity.ok(Map.of(
+                    "accessToken", accessToken,
+                    "refreshToken", refreshToken
+            ));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Failed to authenticate with Google"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Failed to authenticate with Google"));
         }
     }
 

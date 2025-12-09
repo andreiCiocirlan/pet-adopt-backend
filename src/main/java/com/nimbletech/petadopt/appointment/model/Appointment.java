@@ -4,6 +4,8 @@ import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -33,4 +35,19 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentReason appointmentReason;
 
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+    public Appointment(Long id, Pet pet, User user, LocalDateTime appointmentDateTime, AppointmentStatus status, AppointmentReason appointmentReason) {
+        this.id = id;
+        this.pet = pet;
+        this.user = user;
+        this.appointmentDateTime = appointmentDateTime;
+        this.status = status;
+        this.appointmentReason = appointmentReason;
+    }
 }

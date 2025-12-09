@@ -1,9 +1,9 @@
 package com.nimbletech.petadopt.appointment.controller;
 
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
+import com.nimbletech.petadopt.appointment.dto.AppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusRequest;
-import com.nimbletech.petadopt.appointment.dto.AppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.service.CreateAppointmentService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsByUserIdService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsService;

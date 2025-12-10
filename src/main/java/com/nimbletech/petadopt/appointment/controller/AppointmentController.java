@@ -4,6 +4,7 @@ import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
 import com.nimbletech.petadopt.appointment.dto.AppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusRequest;
+import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
 import com.nimbletech.petadopt.appointment.service.CreateAppointmentService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsByUserIdService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsService;
@@ -26,8 +27,9 @@ public class AppointmentController {
     private final UpdateAppointmentStatusService updateAppointmentStatusService;
 
     @GetMapping
-    public ResponseEntity<List<AppointmentDto>> getAllAppointments() {
-        return getAppointmentsService.execute(null);
+    public ResponseEntity<List<AppointmentDto>> getAllAppointments(
+            @RequestParam(value = "status", required = false) List<AppointmentStatus> statuses) {
+        return getAppointmentsService.execute(statuses);
     }
 
     @GetMapping("/user/{userId}")

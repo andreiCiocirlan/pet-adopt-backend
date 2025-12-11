@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,8 +25,9 @@ public class UserController {
     private final GetUsersService getUsersService;
     private final GetUserByIdService getUserByIdService;
     private final CreateUserService createUserService;
-    private final UpdateUserService updateUserService;
     private final DeleteUserService deleteUserService;
+    private final GetCurrentUserService getCurrentUserService;
+    private final UpdateCurrentUserService updateCurrentUserService;
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {
@@ -42,15 +44,24 @@ public class UserController {
         return createUserService.execute(dto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UpdateUserDto dto) {
-        UserUpdateRequest updateRequest = new UserUpdateRequest(id, dto);
-        return updateUserService.execute(updateRequest);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         return deleteUserService.execute(id);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
+        String email = authentication.getName();
+        return getCurrentUserService.execute(email);
+    }
+
+    @PutMapping("/me")
+    public ResponseEntity<UserDto> updateCurrentUser(
+            @RequestBody UpdateUserDto dto,
+            Authentication authentication) {
+        String email = authentication.getName();
+        UserUpdateRequest request = new UserUpdateRequest(email, dto);
+        return updateCurrentUserService.execute(request);
     }
 
     @ExceptionHandler(EmailAlreadyExistsException.class)

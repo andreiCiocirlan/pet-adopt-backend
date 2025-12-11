@@ -13,19 +13,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
-public class UpdateUserService implements Command<UserUpdateRequest, UserDto> {
+@RequiredArgsConstructor
+public class UpdateCurrentUserService implements Command<UserUpdateRequest, UserDto> {
 
     private final UserRepository userRepository;
 
-    @Override
-    public ResponseEntity<UserDto> execute(UserUpdateRequest updateRequest) {
-        Long id = updateRequest.getId();
-        UpdateUserDto dto = updateRequest.getUpdateUserDto();
-        log.info("Updating user with id={}", id);
+    public ResponseEntity<UserDto> execute(UserUpdateRequest request) {
+        String email = request.getEmail();
+        UpdateUserDto dto = request.getUpdateUserDto();
+        log.info("Updating user with email={}", email);
 
-        return userRepository.findById(id)
+        return userRepository.findByEmail(email)
                 .map(existing -> {
                     existing.setName(dto.getName());
                     existing.setPhone(dto.getPhone());

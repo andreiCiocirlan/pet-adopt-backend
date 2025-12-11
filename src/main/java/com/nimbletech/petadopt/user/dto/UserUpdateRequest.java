@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class UserUpdateRequest {
 
-    private Long id;
+    private String email;
     private UpdateUserDto updateUserDto;
 
 }

@@ -28,7 +28,6 @@ public class UpdateUserService implements Command<UserUpdateRequest, UserDto> {
         return userRepository.findById(id)
                 .map(existing -> {
                     existing.setName(dto.getName());
-                    existing.setEmail(dto.getEmail());
                     existing.setPhone(dto.getPhone());
                     existing.setAddress(dto.getAddress());
                     User updated = userRepository.save(existing);

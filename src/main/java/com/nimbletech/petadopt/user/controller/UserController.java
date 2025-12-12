@@ -44,11 +44,6 @@ public class UserController {
         return createUserService.execute(dto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        return deleteUserService.execute(id);
-    }
-
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
         String email = authentication.getName();

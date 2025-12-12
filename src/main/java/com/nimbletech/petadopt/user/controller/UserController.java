@@ -25,7 +25,6 @@ public class UserController {
     private final GetUsersService getUsersService;
     private final GetUserByIdService getUserByIdService;
     private final CreateUserService createUserService;
-    private final DeleteUserService deleteUserService;
     private final GetCurrentUserService getCurrentUserService;
     private final UpdateCurrentUserService updateCurrentUserService;
 

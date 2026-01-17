@@ -45,8 +45,7 @@ public class GlobalExceptionHandler {
 
     private String extractDetailedMessage(HttpMessageNotReadableException ex) {
         Throwable cause = ex.getCause();
-        if (cause instanceof InvalidFormatException) {
-            InvalidFormatException ife = (InvalidFormatException) cause;
+        if (cause instanceof InvalidFormatException ife) {
             if (ife.getTargetType().isEnum()) {
                 return "Invalid value '" + ife.getValue() + "' for enum " + ife.getTargetType().getSimpleName() +
                        ". Allowed values: " + Arrays.toString(ife.getTargetType().getEnumConstants());

@@ -6,6 +6,7 @@ import com.nimbletech.petadopt.clinic.service.CreateClinicService;
 import com.nimbletech.petadopt.clinic.service.GetAllClinicsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ClinicController {
     private final CreateClinicService createClinicService;
     private final GetAllClinicsService getAllClinicsService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ClinicDto> createClinic(@RequestBody CreateClinicDto clinicDto) {
         return createClinicService.execute(clinicDto);

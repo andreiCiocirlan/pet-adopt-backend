@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +29,13 @@ public class UserController {
     private final GetCurrentUserService getCurrentUserService;
     private final UpdateCurrentUserService updateCurrentUserService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return getUsersService.execute(null);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return getUserByIdService.execute(id);
@@ -43,12 +46,14 @@ public class UserController {
         return createUserService.execute(dto);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
         String email = authentication.getName();
         return getCurrentUserService.execute(email);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("/me")
     public ResponseEntity<UserDto> updateCurrentUser(
             @RequestBody UpdateUserDto dto,

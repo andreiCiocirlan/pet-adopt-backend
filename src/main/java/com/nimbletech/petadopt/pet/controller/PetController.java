@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -49,27 +50,32 @@ public class PetController {
         return getPetByIdService.execute(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<PetDto> createPet(@RequestBody CreatePetDto petDto) {
         return createPetService.execute(petDto);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{petId}/clinic/{clinicId}")
     public ResponseEntity<?> setClinicForPet(@PathVariable String petId, @PathVariable String clinicId) {
         return setClinicForPetService.execute(new SetClinicForPetRequest(petId, clinicId));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<PetDto> updatePet(@PathVariable String id, @RequestBody UpdatePetDto petDto) {
         PetUpdateRequest updateRequest = new PetUpdateRequest(id, petDto);
         return updatePetService.execute(updateRequest);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/adopt/{id}")
     public ResponseEntity<PetDto> adoptPet(@PathVariable String id) {
         return adoptPetService.execute(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePet(@PathVariable String id) {
         return deletePetService.execute(id);

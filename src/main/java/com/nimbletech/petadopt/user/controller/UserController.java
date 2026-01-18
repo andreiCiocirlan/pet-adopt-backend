@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.user.controller;
 
-import com.nimbletech.petadopt.user.controller.exceptions.EmailAlreadyExistsException;
+import com.nimbletech.petadopt.user.exceptions.EmailAlreadyExistsException;
 import com.nimbletech.petadopt.user.dto.CreateUserDto;
 import com.nimbletech.petadopt.user.dto.UpdateUserDto;
 import com.nimbletech.petadopt.user.dto.UserDto;

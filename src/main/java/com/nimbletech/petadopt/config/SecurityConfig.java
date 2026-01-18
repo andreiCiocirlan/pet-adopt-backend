@@ -60,15 +60,25 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authenticationProvider(authenticationProvider(userDetailsService, passwordEncoder()))
                 .authorizeHttpRequests(auth -> auth
+                        // === PUBLIC ===
                         .requestMatchers("/api/auth/**", "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/pets/**").permitAll()
+
+                        // === AUTHENTICATED USERS ===
                         .requestMatchers("/api/users/me").authenticated()
-                        .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/appointments/user/**").authenticated()
+
+                        // === ADMIN ONLY ===
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
+
+                        // === PUBLIC (continued) ===
                         .requestMatchers("/api/appointments/**").permitAll()
                         .requestMatchers("/api/clinics/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
+
+                        // === AUTHENTICATED (method override) ===
                         .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess

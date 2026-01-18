@@ -37,12 +37,8 @@ public class PetController {
             @RequestParam(required = false) Integer age,
             @RequestParam(required = false) PetStatus status,
             @RequestParam(required = false) String clinicId) {
-        try {
-            PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status, clinicId);
-            return searchPetService.execute(searchRequest);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+        PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status, clinicId);
+        return searchPetService.execute(searchRequest);
     }
 
     @GetMapping("/{id}")

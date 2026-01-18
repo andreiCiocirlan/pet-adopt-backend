@@ -43,21 +43,13 @@ public class AppointmentController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping
     public ResponseEntity<AppointmentDto> createAppointment(@RequestBody CreateAppointmentRequest command) {
-        try {
-            return createAppointmentService.execute(command);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+        return createAppointmentService.execute(command);
     }
 
     @PreAuthorize("isAuthenticated()")
     @PatchMapping("/{id}/status")
     public ResponseEntity<AppointmentDto> updateAppointmentStatus(@PathVariable Long id,
                                                                   @Valid @RequestBody AppointmentStatusRequest request) {
-        try {
-            return updateAppointmentStatusService.execute(new UpdateAppointmentStatusRequest(id, request));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+        return updateAppointmentStatusService.execute(new UpdateAppointmentStatusRequest(id, request));
     }
 }

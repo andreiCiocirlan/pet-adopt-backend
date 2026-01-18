@@ -4,6 +4,7 @@ import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
 import com.nimbletech.petadopt.appointment.dto.AppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.dto.UpdateAppointmentStatusRequest;
+import com.nimbletech.petadopt.appointment.exceptions.AppointmentAlreadyExistsException;
 import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
 import com.nimbletech.petadopt.appointment.service.CreateAppointmentService;
 import com.nimbletech.petadopt.appointment.service.GetAppointmentsByUserIdService;
@@ -11,11 +12,14 @@ import com.nimbletech.petadopt.appointment.service.GetAppointmentsService;
 import com.nimbletech.petadopt.appointment.service.UpdateAppointmentStatusService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -51,5 +55,12 @@ public class AppointmentController {
     public ResponseEntity<AppointmentDto> updateAppointmentStatus(@PathVariable Long id,
                                                                   @Valid @RequestBody AppointmentStatusRequest request) {
         return updateAppointmentStatusService.execute(new UpdateAppointmentStatusRequest(id, request));
+    }
+
+    @ExceptionHandler(AppointmentAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleAppointmentAlreadyExistsException(AppointmentAlreadyExistsException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

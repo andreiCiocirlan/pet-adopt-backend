@@ -3,6 +3,7 @@ package com.nimbletech.petadopt.appointment.service;
 import com.nimbletech.petadopt.Command;
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
 import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
+import com.nimbletech.petadopt.appointment.exceptions.AppointmentAlreadyExistsException;
 import com.nimbletech.petadopt.appointment.mapper.AppointmentMapper;
 import com.nimbletech.petadopt.appointment.model.Appointment;
 import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
@@ -16,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -35,6 +38,11 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         Pet pet = petRepository.findById(cmd.getPetId())
                 .orElseThrow(() -> new EntityNotFoundException("Pet not found"));
+
+        if (appointmentRepository.countByUserIdAndPetIdAndStatusIn(user.getId(), pet.getId(), List.of(AppointmentStatus.PENDING, AppointmentStatus.CONFIRMED)) > 0) {
+            log.warn("Appointment already exists for {} and {}", pet.getName(), user.getName());
+            throw new AppointmentAlreadyExistsException("Appointment already exists for " + pet.getName() + " and " + user.getName());
+        }
 
         Appointment appointment = new Appointment();
         appointment.setUser(user);

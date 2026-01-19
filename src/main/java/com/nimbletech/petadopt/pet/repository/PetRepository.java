@@ -14,12 +14,16 @@ import java.util.Optional;
 @Repository
 public interface PetRepository extends JpaRepository<Pet, String> {
 
-    @Query("SELECT p FROM Pet p LEFT JOIN FETCH p.clinic c WHERE "
-           + "(:animalType IS NULL OR p.type = :animalType) AND "
-           + "(LOWER(p.breed) LIKE LOWER(CONCAT('%', COALESCE(:breed, ''), '%'))) AND "
-           + "(:age IS NULL OR p.age = :age) AND "
-           + "(:status IS NULL OR p.status = :status) AND "
-           + "(:clinicId IS NULL OR c.id = :clinicId)")
+    @Query("""
+            SELECT DISTINCT p FROM Pet p
+            LEFT JOIN FETCH p.clinic c
+            LEFT JOIN FETCH p.imageUrls
+            WHERE (:animalType IS NULL OR p.type = :animalType) AND
+                  (LOWER(p.breed) LIKE LOWER(CONCAT('%', COALESCE(:breed, ''), '%'))) AND
+                  (:age IS NULL OR p.age = :age) AND
+                  (:status IS NULL OR p.status = :status) AND
+                  (:clinicId IS NULL OR c.id = :clinicId)
+            """)
     List<Pet> findPetsByFilters(@Param("animalType") AnimalType animalType,
                                 @Param("breed") String breed,
                                 @Param("age") Integer age,

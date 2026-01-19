@@ -34,7 +34,7 @@ public class PetController {
     private final RestTemplate restTemplate;
 
     @GetMapping
-    public ResponseEntity<Page<PetDto>> searchPets(
+    public ResponseEntity<PaginatedPetsResponse> searchPets(
             @RequestParam(required = false) AnimalType animalType,
             @RequestParam(required = false) String breed,
             @RequestParam(required = false) Integer age,

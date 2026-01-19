@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PetRepository extends JpaRepository<Pet, String> {
@@ -24,4 +25,7 @@ public interface PetRepository extends JpaRepository<Pet, String> {
                                 @Param("age") Integer age,
                                 @Param("status") PetStatus status,
                                 @Param("clinicId") String clinicId);
+
+    @Query("SELECT p FROM Pet p LEFT JOIN FETCH p.clinic LEFT JOIN FETCH p.appointments LEFT JOIN FETCH p.imageUrls WHERE p.id = :id")
+    Optional<Pet> findByIdWithAssociations(@Param("id") String id);
 }

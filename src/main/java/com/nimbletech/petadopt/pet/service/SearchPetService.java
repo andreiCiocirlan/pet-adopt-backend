@@ -12,8 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -39,16 +41,16 @@ public class SearchPetService implements Query<PetSearchRequest, PaginatedPetsRe
 
         List<Pet> pets = petRepository.findPetsWithImagesByIds(petIds);
 
-        // sort by type, name since findPetsWithImagesByIds jumbles order
-        List<Pet> sortedPets = pets.stream()
-                .sorted(Comparator
-                        .comparing((Pet p) -> p.getType().name())
-                        .thenComparing(Pet::getName)
-                        .thenComparing(Pet::getId))
+        Map<String, Pet> petMap = pets.stream()
+                .collect(Collectors.toMap(Pet::getId, Function.identity()));
+
+        List<Pet> orderedPets = petIds.stream()  // ← Uses EXACT petIds order
+                .map(petMap::get)
+                .filter(Objects::nonNull)
                 .toList();
 
         return ResponseEntity.ok(new PaginatedPetsResponse(
-                sortedPets.stream().map(PetMapper::toDto).collect(Collectors.toList()),
+                orderedPets.stream().map(PetMapper::toDto).collect(Collectors.toList()),
                 idTypePage.getNumber(),
                 idTypePage.getSize(),
                 idTypePage.getTotalElements(),

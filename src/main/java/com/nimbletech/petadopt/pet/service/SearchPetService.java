@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -26,16 +28,31 @@ public class SearchPetService implements Query<PetSearchRequest, PaginatedPetsRe
         log.info("Searching pets with filters: animalType={}, breed={}, age={}, clinicId={}",
                 request.animalType(), request.breed(), request.age(), request.clinicId());
 
-        Page<Pet> pets = petRepository.findPetsByFilters(request.animalType(), request.breed(), request.age(), request.status(), request.clinicId(), request.pageable());
+        Page<Object[]> idTypePage = petRepository.findPetIdsByFilters(
+                request.animalType(), request.breed(), request.age(),
+                request.status(), request.clinicId(), request.pageable());
 
-        PaginatedPetsResponse response = new PaginatedPetsResponse(
-                pets.getContent().stream().map(PetMapper::toDto).collect(Collectors.toList()),
-                pets.getNumber(),
-                pets.getSize(),
-                pets.getTotalElements(),
-                pets.getTotalPages()
-        );
+        List<String> petIds = idTypePage.getContent()
+                .stream()
+                .map(row -> (String) row[0])
+                .toList();
 
-        return ResponseEntity.ok(response);
+        List<Pet> pets = petRepository.findPetsWithImagesByIds(petIds);
+
+        // sort by type, name since findPetsWithImagesByIds jumbles order
+        List<Pet> sortedPets = pets.stream()
+                .sorted(Comparator
+                        .comparing((Pet p) -> p.getType().name())
+                        .thenComparing(Pet::getName)
+                        .thenComparing(Pet::getId))
+                .toList();
+
+        return ResponseEntity.ok(new PaginatedPetsResponse(
+                sortedPets.stream().map(PetMapper::toDto).collect(Collectors.toList()),
+                idTypePage.getNumber(),
+                idTypePage.getSize(),
+                idTypePage.getTotalElements(),
+                idTypePage.getTotalPages()
+        ));
     }
 }

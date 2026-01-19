@@ -41,7 +41,7 @@ public class PetController {
             @RequestParam(required = false) String clinicId,
             @RequestParam(defaultValue = "0") int pageNo,
             @RequestParam(defaultValue = "10") int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.ASC, "type"));
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
         PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status, clinicId, pageable);
         return searchPetService.execute(searchRequest);
     }

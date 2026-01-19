@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.domain.Pageable;
 
 public record PetSearchRequest(
-        @NotBlank
         AnimalType animalType,
         String breed,
         Integer age,

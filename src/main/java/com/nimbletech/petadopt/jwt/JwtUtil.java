@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class JwtUtil {
                 .setSubject(username)
                 .addClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, ACCESS_SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8))
                 .compact();
     }
 
@@ -36,13 +37,13 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, REFRESH_SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, REFRESH_SECRET_KEY.getBytes(StandardCharsets.UTF_8))
                 .compact();
     }
 
     public String extractUsername(String token, String secretKey) {
         return Jwts.parser()
-                .setSigningKey(secretKey)
+                .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
@@ -58,8 +59,10 @@ public class JwtUtil {
 
     private boolean isTokenExpired(String token, String secretKey) {
         try {
-            Claims claims = Jwts.parser().setSigningKey(secretKey)
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
                     .parseClaimsJws(token).getBody();
+
             Date expiry = claims.getExpiration();
             return expiry.before(new Date());
         } catch (io.jsonwebtoken.ExpiredJwtException e) {

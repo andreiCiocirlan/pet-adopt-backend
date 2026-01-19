@@ -4,7 +4,7 @@ import com.nimbletech.petadopt.pet.model.AnimalType;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Builder
 @Data
@@ -16,5 +16,5 @@ public class CreatePetDto {
     private String health;
     private String characteristics;
     private String clinicId;
-    private List<String> imageUrls;
+    private Set<String> imageUrls;
 }

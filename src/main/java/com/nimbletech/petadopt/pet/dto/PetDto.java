@@ -6,7 +6,7 @@ import com.nimbletech.petadopt.pet.model.PetStatus;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Builder
 @Data
@@ -20,5 +20,5 @@ public class PetDto {
     private String characteristics;
     private PetStatus status;
     private ClinicDto clinic;
-    private List<String> imageUrls;
+    private Set<String> imageUrls;
 }

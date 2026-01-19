@@ -1,9 +1,9 @@
 package com.nimbletech.petadopt.user.service;
 
 import com.nimbletech.petadopt.Command;
-import com.nimbletech.petadopt.user.exceptions.EmailAlreadyExistsException;
 import com.nimbletech.petadopt.user.dto.CreateUserDto;
 import com.nimbletech.petadopt.user.dto.UserDto;
+import com.nimbletech.petadopt.user.exceptions.EmailAlreadyExistsException;
 import com.nimbletech.petadopt.user.mapper.UserMapper;
 import com.nimbletech.petadopt.user.model.Role;
 import com.nimbletech.petadopt.user.model.User;

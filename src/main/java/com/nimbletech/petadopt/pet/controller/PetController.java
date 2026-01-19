@@ -5,6 +5,10 @@ import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.model.PetStatus;
 import com.nimbletech.petadopt.pet.service.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -31,13 +34,16 @@ public class PetController {
     private final RestTemplate restTemplate;
 
     @GetMapping
-    public ResponseEntity<List<PetDto>> searchPets(
+    public ResponseEntity<Page<PetDto>> searchPets(
             @RequestParam(required = false) AnimalType animalType,
             @RequestParam(required = false) String breed,
             @RequestParam(required = false) Integer age,
             @RequestParam(required = false) PetStatus status,
-            @RequestParam(required = false) String clinicId) {
-        PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status, clinicId);
+            @RequestParam(required = false) String clinicId,
+            @RequestParam(defaultValue = "0") int pageNo,
+            @RequestParam(defaultValue = "10") int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.ASC, "type"));
+        PetSearchRequest searchRequest = new PetSearchRequest(animalType, breed, age, status, clinicId, pageable);
         return searchPetService.execute(searchRequest);
     }
 

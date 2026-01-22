@@ -1,5 +1,6 @@
 package com.nimbletech.petadopt.pet.controller;
 
+import com.nimbletech.petadopt.PaginatedResult;
 import com.nimbletech.petadopt.pet.dto.*;
 import com.nimbletech.petadopt.pet.model.AnimalType;
 import com.nimbletech.petadopt.pet.model.PetStatus;
@@ -7,7 +8,6 @@ import com.nimbletech.petadopt.pet.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,7 +33,7 @@ public class PetController {
     private final RestTemplate restTemplate;
 
     @GetMapping
-    public ResponseEntity<PaginatedPetsResponse> searchPets(
+    public ResponseEntity<PaginatedResult<PetDto>> searchPets(
             @RequestParam(required = false) AnimalType animalType,
             @RequestParam(required = false) String breed,
             @RequestParam(required = false) Integer age,

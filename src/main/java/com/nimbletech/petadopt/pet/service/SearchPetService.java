@@ -1,7 +1,8 @@
 package com.nimbletech.petadopt.pet.service;
 
 import com.nimbletech.petadopt.Query;
-import com.nimbletech.petadopt.pet.dto.PaginatedPetsResponse;
+import com.nimbletech.petadopt.PaginatedResult;
+import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.dto.PetSearchRequest;
 import com.nimbletech.petadopt.pet.mapper.PetMapper;
 import com.nimbletech.petadopt.pet.model.Pet;
@@ -21,12 +22,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 @Service
-public class SearchPetService implements Query<PetSearchRequest, PaginatedPetsResponse> {
+public class SearchPetService implements Query<PetSearchRequest, PaginatedResult<PetDto>> {
 
     private final PetRepository petRepository;
 
     @Override
-    public ResponseEntity<PaginatedPetsResponse> execute(PetSearchRequest request) {
+    public ResponseEntity<PaginatedResult<PetDto>> execute(PetSearchRequest request) {
         log.info("Searching pets with filters: animalType={}, status={}, breed={}, age={}, clinicId={}, pageNo={}",
                 request.animalType(), request.status(), request.breed(), request.age(), request.clinicId(), request.pageable().getPageNumber());
 
@@ -49,7 +50,7 @@ public class SearchPetService implements Query<PetSearchRequest, PaginatedPetsRe
                 .filter(Objects::nonNull)
                 .toList();
 
-        return ResponseEntity.ok(new PaginatedPetsResponse(
+        return ResponseEntity.ok(new PaginatedResult<>(
                 orderedPets.stream().map(PetMapper::toDto).collect(Collectors.toList()),
                 idTypePage.getNumber(),
                 idTypePage.getSize(),

@@ -27,8 +27,8 @@ public class SearchPetService implements Query<PetSearchRequest, PaginatedPetsRe
 
     @Override
     public ResponseEntity<PaginatedPetsResponse> execute(PetSearchRequest request) {
-        log.info("Searching pets with filters: animalType={}, breed={}, age={}, clinicId={}, pageNo={}",
-                request.animalType(), request.breed(), request.age(), request.clinicId(), request.pageable().getPageNumber());
+        log.info("Searching pets with filters: animalType={}, status={}, breed={}, age={}, clinicId={}, pageNo={}",
+                request.animalType(), request.status(), request.breed(), request.age(), request.clinicId(), request.pageable().getPageNumber());
 
         Page<Object[]> idTypePage = petRepository.findPetIdsByFilters(
                 request.animalType(), request.breed(), request.age(),

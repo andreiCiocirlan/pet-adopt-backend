@@ -1,15 +1,13 @@
 package com.nimbletech.petadopt.user.dto;
 
 import lombok.Builder;
-import lombok.Data;
 
 @Builder
-@Data
-public class UserDto {
-
-    private Long id;
-    private String name;
-    private String email;
-    private String phone;
-    private String address;
+public record UserDto(
+        Long id,
+        String name,
+        String email,
+        String phone,
+        String address
+) {
 }

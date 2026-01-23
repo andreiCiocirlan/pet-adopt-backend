@@ -20,10 +20,10 @@ public class UserMapper {
     public static User toEntity(CreateUserDto dto) {
         if (dto == null) return null;
         User user = new User();
-        user.setName(dto.getName());
-        user.setEmail(dto.getEmail());
-        user.setPhone(dto.getPhone());
-        user.setAddress(dto.getAddress());
+        user.setName(dto.name());
+        user.setEmail(dto.email());
+        user.setPhone(dto.phone());
+        user.setAddress(dto.address());
         return user;
     }
 }

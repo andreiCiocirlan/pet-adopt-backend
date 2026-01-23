@@ -3,18 +3,17 @@ package com.nimbletech.petadopt.user.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
-import lombok.Data;
 
 @Builder
-@Data
-public class UpdateUserDto {
+public record UpdateUserDto(
 
-    @NotBlank(message = "Name is required")
-    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
-    private String name;
+        @NotBlank(message = "Name is required")
+        @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+        String name,
 
-    @NotBlank(message = "Phone is required")
-    private String phone;
+        @NotBlank(message = "Phone is required")
+        String phone,
 
-    private String address; // optional
+        String address // optional
+) {
 }

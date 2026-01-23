@@ -27,13 +27,13 @@ public class CreateUserService implements Command<CreateUserDto, UserDto> {
 
     @Override
     public ResponseEntity<UserDto> execute(CreateUserDto dto) {
-        log.info("Creating user with email={}", dto.getEmail());
+        log.info("Creating user with email={}", dto.email());
         User user = UserMapper.toEntity(dto);
-        userRepository.findByEmail(dto.getEmail()).ifPresent(u -> {
+        userRepository.findByEmail(dto.email()).ifPresent(u -> {
             throw new EmailAlreadyExistsException("Email is already in use");
         });
 
-        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        String hashedPassword = passwordEncoder.encode(dto.password());
         user.setPassword(hashedPassword);
         user.setRoles(Set.of(Role.ROLE_USER));
 

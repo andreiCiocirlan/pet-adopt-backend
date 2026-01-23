@@ -20,15 +20,15 @@ public class UpdateCurrentUserService implements Command<UserUpdateRequest, User
     private final UserRepository userRepository;
 
     public ResponseEntity<UserDto> execute(UserUpdateRequest request) {
-        String email = request.getEmail();
-        UpdateUserDto dto = request.getUpdateUserDto();
+        String email = request.email();
+        UpdateUserDto dto = request.updateUserDto();
         log.info("Updating user with email={}", email);
 
         return userRepository.findByEmail(email)
                 .map(existing -> {
-                    existing.setName(dto.getName());
-                    existing.setPhone(dto.getPhone());
-                    existing.setAddress(dto.getAddress());
+                    existing.setName(dto.name());
+                    existing.setPhone(dto.phone());
+                    existing.setAddress(dto.address());
                     User updated = userRepository.save(existing);
                     return ResponseEntity.ok(UserMapper.toDto(updated));
                 })

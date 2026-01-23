@@ -20,7 +20,7 @@ public class CreateClinicService implements Command<CreateClinicDto, ClinicDto> 
 
     @Override
     public ResponseEntity<ClinicDto> execute(CreateClinicDto clinicDto) {
-        log.info("Creating clinic for name={} and address={}", clinicDto.getName(), clinicDto.getAddress());
+        log.info("Creating clinic for name={} and address={}", clinicDto.name(), clinicDto.address());
         Clinic clinic = ClinicMapper.toEntity(clinicDto);
         Clinic savedClinic = clinicRepository.save(clinic);
         return ResponseEntity.ok(ClinicMapper.toDto(savedClinic));

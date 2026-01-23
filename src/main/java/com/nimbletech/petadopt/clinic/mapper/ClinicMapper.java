@@ -25,11 +25,11 @@ public class ClinicMapper {
             return null;
         }
         Clinic clinic = new Clinic();
-        clinic.setName(dto.getName());
-        clinic.setAddress(dto.getAddress());
-        clinic.setPhoneNumber(dto.getPhoneNumber());
-        clinic.setLatitude(dto.getLatitude());
-        clinic.setLongitude(dto.getLongitude());
+        clinic.setName(dto.name());
+        clinic.setAddress(dto.address());
+        clinic.setPhoneNumber(dto.phoneNumber());
+        clinic.setLatitude(dto.latitude());
+        clinic.setLongitude(dto.longitude());
         return clinic;
     }
 

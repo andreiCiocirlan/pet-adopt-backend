@@ -9,16 +9,16 @@ import lombok.Data;
 import java.util.Set;
 
 @Builder
-@Data
-public class PetDto {
-    private String id;
-    private String name;
-    private int age;
-    private AnimalType type;
-    private String breed;
-    private String health;
-    private String characteristics;
-    private PetStatus status;
-    private ClinicDto clinic;
-    private Set<String> imageUrls;
+public record PetDto(
+        String id,
+        String name,
+        int age,
+        AnimalType type,
+        String breed,
+        String health,
+        String characteristics,
+        PetStatus status,
+        ClinicDto clinic,
+        Set<String> imageUrls
+) {
 }

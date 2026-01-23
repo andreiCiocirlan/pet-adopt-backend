@@ -20,16 +20,16 @@ public class UpdatePetService implements Command<PetUpdateRequest, PetDto> {
 
     @Override
     public ResponseEntity<PetDto> execute(PetUpdateRequest updateRequest) {
-        log.info("Updating user with id={}", updateRequest.getId());
-        return petRepository.findById(updateRequest.getId())
+        log.info("Updating user with id={}", updateRequest.id());
+        return petRepository.findById(updateRequest.id())
             .map(existingPet -> {
-                existingPet.setName(updateRequest.getUpdatePetDto().getName());
-                existingPet.setAge(updateRequest.getUpdatePetDto().getAge());
-                existingPet.setType(updateRequest.getUpdatePetDto().getType());
-                existingPet.setBreed(updateRequest.getUpdatePetDto().getBreed());
-                existingPet.setHealth(updateRequest.getUpdatePetDto().getHealth());
-                existingPet.setCharacteristics(updateRequest.getUpdatePetDto().getCharacteristics());
-                existingPet.setImageUrls(updateRequest.getUpdatePetDto().getImageUrls());
+                existingPet.setName(updateRequest.updatePetDto().name());
+                existingPet.setAge(updateRequest.updatePetDto().age());
+                existingPet.setType(updateRequest.updatePetDto().type());
+                existingPet.setBreed(updateRequest.updatePetDto().breed());
+                existingPet.setHealth(updateRequest.updatePetDto().health());
+                existingPet.setCharacteristics(updateRequest.updatePetDto().characteristics());
+                existingPet.setImageUrls(updateRequest.updatePetDto().imageUrls());
                 Pet updated = petRepository.save(existingPet);
                 return ResponseEntity.ok(PetMapper.toDto(updated));
             })

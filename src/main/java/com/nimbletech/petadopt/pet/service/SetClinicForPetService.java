@@ -24,11 +24,11 @@ public class SetClinicForPetService implements Command<SetClinicForPetRequest, P
 
     @Override
     public ResponseEntity<PetDto> execute(SetClinicForPetRequest request) {
-        log.info("Setting pet with id={} to clinicId={}", request.getPetId(), request.getClinicId());
-        Pet pet = petRepository.findById(request.getPetId())
+        log.info("Setting pet with id={} to clinicId={}", request.petId(), request.clinicId());
+        Pet pet = petRepository.findById(request.petId())
                 .orElseThrow(() -> new EntityNotFoundException("Pet not found"));
 
-        Clinic clinic = clinicRepository.findById(request.getClinicId())
+        Clinic clinic = clinicRepository.findById(request.clinicId())
                 .orElseThrow(() -> new EntityNotFoundException("Clinic not found"));
 
         pet.setClinic(clinic);

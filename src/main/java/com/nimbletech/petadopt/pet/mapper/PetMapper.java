@@ -26,13 +26,13 @@ public class PetMapper {
     public static Pet toEntity(CreatePetDto petDto) {
         if (petDto == null) return null;
         Pet pet = new Pet();
-        pet.setName(petDto.getName());
-        pet.setAge(petDto.getAge());
-        pet.setType(petDto.getType());
-        pet.setBreed(petDto.getBreed());
-        pet.setHealth(petDto.getHealth());
-        pet.setCharacteristics(petDto.getCharacteristics());
-        pet.setImageUrls(petDto.getImageUrls());
+        pet.setName(petDto.name());
+        pet.setAge(petDto.age());
+        pet.setType(petDto.type());
+        pet.setBreed(petDto.breed());
+        pet.setHealth(petDto.health());
+        pet.setCharacteristics(petDto.characteristics());
+        pet.setImageUrls(petDto.imageUrls());
         return pet;
     }
 

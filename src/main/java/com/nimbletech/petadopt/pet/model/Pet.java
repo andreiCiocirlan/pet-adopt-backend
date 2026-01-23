@@ -12,7 +12,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet {
@@ -29,7 +28,7 @@ public class Pet {
     @ElementCollection
     @CollectionTable(name = "pet_image_urls", joinColumns = @JoinColumn(name = "pet_id"))
     @Column(name = "image_url")
-    private Set<String> imageUrls = new HashSet<>();;
+    private Set<String> imageUrls = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private PetStatus status;

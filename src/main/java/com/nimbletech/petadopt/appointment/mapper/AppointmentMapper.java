@@ -1,17 +1,23 @@
 package com.nimbletech.petadopt.appointment.mapper;
 
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
+import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.model.Appointment;
+import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
 import com.nimbletech.petadopt.pet.model.Pet;
 import com.nimbletech.petadopt.user.model.User;
 
 public class AppointmentMapper {
 
-    public static Appointment toEntity(User user, Pet pet) {
-        Appointment ar = new Appointment();
-        ar.setPet(pet);
-        ar.setUser(user);
-        return ar;
+    public static Appointment toEntity(CreateAppointmentRequest cmd, User user, Pet pet) {
+        Appointment appointment = new Appointment();
+        appointment.setPet(pet);
+        appointment.setUser(user);
+        appointment.setAppointmentDateTime(cmd.getAppointmentDateTime());
+        appointment.setAppointmentReason(cmd.getAppointmentReason());
+        AppointmentStatus appointmentStatus = cmd.getAppointmentStatus() != null ? cmd.getAppointmentStatus() : AppointmentStatus.PENDING;
+        appointment.setStatus(appointmentStatus);
+        return appointment;
     }
 
     public static AppointmentDto toDto(Appointment appointment) {

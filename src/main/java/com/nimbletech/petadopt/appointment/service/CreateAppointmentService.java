@@ -44,14 +44,7 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
             throw new AppointmentAlreadyExistsException("Appointment already exists for " + pet.getName() + " and " + user.getName());
         }
 
-        Appointment appointment = new Appointment();
-        appointment.setUser(user);
-        appointment.setPet(pet);
-        appointment.setAppointmentDateTime(cmd.getAppointmentDateTime());
-        appointment.setAppointmentReason(cmd.getAppointmentReason());
-        AppointmentStatus appointmentStatus = cmd.getAppointmentStatus() != null ? cmd.getAppointmentStatus() : AppointmentStatus.PENDING;
-        appointment.setStatus(appointmentStatus);
-
+        Appointment appointment = AppointmentMapper.toEntity(cmd, user, pet);
         appointment = appointmentRepository.save(appointment);
         return ResponseEntity.ok(AppointmentMapper.toDto(appointment));
     }

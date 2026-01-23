@@ -32,8 +32,4 @@ public class Clinic {
 
     private double longitude;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Pet> pets;
-
 }

@@ -63,21 +63,18 @@ public class SecurityConfig {
                         // === PUBLIC ===
                         .requestMatchers("/api/auth/**", "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/pets/**").permitAll()
+                        .requestMatchers("/api/appointments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/clinics/**").permitAll()
 
                         // === AUTHENTICATED USERS ===
                         .requestMatchers("/api/users/me").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/appointments/user/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
 
                         // === ADMIN ONLY ===
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/pets/**").hasRole("ADMIN")
-
-                        // === PUBLIC (continued) ===
-                        .requestMatchers("/api/appointments/**").permitAll()
-                        .requestMatchers("/api/clinics/**").permitAll()
-
-                        // === AUTHENTICATED (method override) ===
-                        .requestMatchers(HttpMethod.POST, "/api/appointments").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/clinics/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )

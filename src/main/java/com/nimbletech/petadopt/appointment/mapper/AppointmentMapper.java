@@ -13,9 +13,9 @@ public class AppointmentMapper {
         Appointment appointment = new Appointment();
         appointment.setPet(pet);
         appointment.setUser(user);
-        appointment.setAppointmentDateTime(cmd.getAppointmentDateTime());
-        appointment.setAppointmentReason(cmd.getAppointmentReason());
-        AppointmentStatus appointmentStatus = cmd.getAppointmentStatus() != null ? cmd.getAppointmentStatus() : AppointmentStatus.PENDING;
+        appointment.setAppointmentDateTime(cmd.appointmentDateTime());
+        appointment.setAppointmentReason(cmd.appointmentReason());
+        AppointmentStatus appointmentStatus = cmd.appointmentStatus() != null ? cmd.appointmentStatus() : AppointmentStatus.PENDING;
         appointment.setStatus(appointmentStatus);
         return appointment;
     }

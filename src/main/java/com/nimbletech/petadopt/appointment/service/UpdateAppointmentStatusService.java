@@ -21,10 +21,10 @@ public class UpdateAppointmentStatusService implements Command<UpdateAppointment
 
     @Override
     public ResponseEntity<AppointmentDto> execute(UpdateAppointmentStatusRequest cmd) {
-        log.info("Updating appointment with id={} to status={}", cmd.getAppointmentId(), cmd.getUpdateAppointmentRequest().getStatus());
-        Appointment appointment = appointmentRepository.findById(cmd.getAppointmentId())
+        log.info("Updating appointment with id={} to status={}", cmd.appointmentId(), cmd.updateAppointmentRequest().status());
+        Appointment appointment = appointmentRepository.findById(cmd.appointmentId())
                 .orElseThrow(() -> new EntityNotFoundException("Appointment not found"));
-        appointment.setStatus(cmd.getUpdateAppointmentRequest().getStatus());
+        appointment.setStatus(cmd.updateAppointmentRequest().status());
         appointment = appointmentRepository.save(appointment);
         return ResponseEntity.ok(AppointmentMapper.toDto(appointment));
     }

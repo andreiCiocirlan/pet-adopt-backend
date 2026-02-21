@@ -44,8 +44,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 response.setContentType("application/json");
                 response.getWriter().write("{\"error\": \"Token expired\"}");
                 return;
-            } catch (Exception e) {
-                // Invalid signature/malformed → no username → 401 later
             }
         }
 

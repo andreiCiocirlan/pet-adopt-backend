@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PetRepository extends JpaRepository<Pet, String> {
+interface PetRepository extends JpaRepository<Pet, String> {
 
     @Query("""
             SELECT DISTINCT p.id, p.type, p.name FROM Pet p

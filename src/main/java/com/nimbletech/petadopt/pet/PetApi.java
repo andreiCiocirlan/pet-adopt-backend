@@ -1,25 +1,13 @@
 package com.nimbletech.petadopt.pet;
 
-import com.nimbletech.petadopt.pet.domain.PetRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class PetApi {
-    private final PetRepository petRepository;
-    
-    public Optional<Pet> findById(String petId) {
-        return petRepository.findById(petId);
-    }
+public interface PetApi {
+    Optional<Pet> findById(String petId);
 
-    public Pet save(Pet pet) {
-        return petRepository.save(pet);
-    }
+    Pet save(Pet pet);
 
-    public Optional<Pet> findByName(String name) {
-        return petRepository.findByName(name);
-    }
+    Optional<Pet> findByName(String name);
+
+    long count();
 }

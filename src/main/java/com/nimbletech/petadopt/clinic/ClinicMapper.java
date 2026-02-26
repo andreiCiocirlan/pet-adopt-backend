@@ -1,6 +1,6 @@
-package com.nimbletech.petadopt.clinic.domain;
+package com.nimbletech.petadopt.clinic;
 
-import com.nimbletech.petadopt.clinic.Clinic;
+import com.nimbletech.petadopt.clinic.domain.CreateClinicDto;
 
 public class ClinicMapper {
 

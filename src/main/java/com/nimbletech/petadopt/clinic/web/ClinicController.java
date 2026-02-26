@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.clinic.web;
 
-import com.nimbletech.petadopt.clinic.domain.ClinicDto;
+import com.nimbletech.petadopt.clinic.ClinicDto;
 import com.nimbletech.petadopt.clinic.domain.CreateClinicDto;
 import com.nimbletech.petadopt.clinic.domain.CreateClinicService;
 import com.nimbletech.petadopt.clinic.domain.GetAllClinicsService;

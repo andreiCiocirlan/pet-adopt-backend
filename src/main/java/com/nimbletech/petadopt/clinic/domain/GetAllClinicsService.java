@@ -1,6 +1,8 @@
 package com.nimbletech.petadopt.clinic.domain;
 
 import com.nimbletech.petadopt.clinic.Clinic;
+import com.nimbletech.petadopt.clinic.ClinicDto;
+import com.nimbletech.petadopt.clinic.ClinicMapper;
 import com.nimbletech.petadopt.common.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

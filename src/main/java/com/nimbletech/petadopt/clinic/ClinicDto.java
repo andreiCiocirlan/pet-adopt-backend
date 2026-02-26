@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.clinic.domain;
+package com.nimbletech.petadopt.clinic;
 
 import lombok.Builder;
 

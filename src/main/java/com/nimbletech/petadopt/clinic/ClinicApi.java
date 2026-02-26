@@ -1,22 +1,13 @@
 package com.nimbletech.petadopt.clinic;
 
-import com.nimbletech.petadopt.clinic.domain.ClinicRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
-@RequiredArgsConstructor
-@Service
-public class ClinicApi {
+public interface ClinicApi {
+    Optional<Clinic> findById(String clinicId);
 
-    private final ClinicRepository clinicRepository;
+    Optional<Clinic> findByName(String clinic);
 
-    public Optional<Clinic> findById(String clinicId) {
-        return clinicRepository.findById(clinicId);
-    }
+    long count();
 
-    public Optional<Clinic> findByName(String clinic) {
-        return clinicRepository.findByName(clinic);
-    }
+    Clinic save(Clinic clinic);
 }

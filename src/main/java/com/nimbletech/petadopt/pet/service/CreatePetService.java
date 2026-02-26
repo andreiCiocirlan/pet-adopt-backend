@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.pet.service;
 
-import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.clinic.model.Clinic;
 import com.nimbletech.petadopt.clinic.repository.ClinicRepository;
 import com.nimbletech.petadopt.pet.dto.CreatePetDto;

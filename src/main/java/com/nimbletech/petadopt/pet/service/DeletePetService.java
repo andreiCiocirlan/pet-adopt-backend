@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.pet.service;
 
-import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.pet.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

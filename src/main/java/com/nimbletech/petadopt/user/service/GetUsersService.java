@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.user.service;
 
-import com.nimbletech.petadopt.Query;
+import com.nimbletech.petadopt.common.Query;
 import com.nimbletech.petadopt.user.dto.UserDto;
 import com.nimbletech.petadopt.user.mapper.UserMapper;
 import com.nimbletech.petadopt.user.model.User;

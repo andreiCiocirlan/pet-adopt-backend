@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.clinic.service;
 
-import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.clinic.dto.ClinicDto;
 import com.nimbletech.petadopt.clinic.dto.CreateClinicDto;
 import com.nimbletech.petadopt.clinic.mapper.ClinicMapper;

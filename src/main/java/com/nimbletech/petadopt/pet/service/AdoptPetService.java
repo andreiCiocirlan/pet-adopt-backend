@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.pet.service;
 
-import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.mapper.PetMapper;
 import com.nimbletech.petadopt.pet.model.Pet;

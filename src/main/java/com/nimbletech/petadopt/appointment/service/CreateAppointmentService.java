@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.appointment.service;
 
-import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
 import com.nimbletech.petadopt.appointment.dto.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.exceptions.AppointmentAlreadyExistsException;

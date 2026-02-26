@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.appointment.service;
 
-import com.nimbletech.petadopt.Query;
+import com.nimbletech.petadopt.common.Query;
 import com.nimbletech.petadopt.appointment.dto.AppointmentDto;
 import com.nimbletech.petadopt.appointment.mapper.AppointmentMapper;
 import com.nimbletech.petadopt.appointment.model.Appointment;

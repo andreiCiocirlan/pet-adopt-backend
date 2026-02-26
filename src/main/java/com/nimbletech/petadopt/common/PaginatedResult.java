@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt;
+package com.nimbletech.petadopt.common;
 
 import java.util.List;
 

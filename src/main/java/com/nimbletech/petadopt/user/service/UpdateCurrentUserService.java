@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.user.service;
 
-import com.nimbletech.petadopt.Command;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.user.dto.UpdateUserDto;
 import com.nimbletech.petadopt.user.dto.UserDto;
 import com.nimbletech.petadopt.user.dto.UserUpdateRequest;

@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.clinic.service;
 
-import com.nimbletech.petadopt.Query;
+import com.nimbletech.petadopt.common.Query;
 import com.nimbletech.petadopt.clinic.dto.ClinicDto;
 import com.nimbletech.petadopt.clinic.mapper.ClinicMapper;
 import com.nimbletech.petadopt.clinic.model.Clinic;

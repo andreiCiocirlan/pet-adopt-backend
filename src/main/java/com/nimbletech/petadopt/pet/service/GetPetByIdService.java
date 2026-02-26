@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.pet.service;
 
-import com.nimbletech.petadopt.Query;
+import com.nimbletech.petadopt.common.Query;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.mapper.PetMapper;
 import com.nimbletech.petadopt.pet.repository.PetRepository;

@@ -1,7 +1,7 @@
 package com.nimbletech.petadopt.pet.service;
 
-import com.nimbletech.petadopt.PaginatedResult;
-import com.nimbletech.petadopt.Query;
+import com.nimbletech.petadopt.common.PaginatedResult;
+import com.nimbletech.petadopt.common.Query;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.dto.PetSearchRequest;
 import com.nimbletech.petadopt.pet.mapper.PetMapper;

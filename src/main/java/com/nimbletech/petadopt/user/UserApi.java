@@ -1,29 +1,15 @@
 package com.nimbletech.petadopt.user;
 
-import com.nimbletech.petadopt.user.domain.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class UserApi {
-    private final UserRepository userRepository;
-    
-    public Optional<User> findById(Long userId) {
-        return userRepository.findById(userId);
-    }
+public interface UserApi {
+    Optional<User> findById(Long userId);
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    Optional<User> findByEmail(String email);
 
-    public User findByGoogleId(String googleId) {
-        return userRepository.findByGoogleId(googleId);
-    }
+    User findByGoogleId(String googleId);
 
-    public User save(User user) {
-        return userRepository.save(user);
-    }
+    User save(User user);
+
+    long count();
 }

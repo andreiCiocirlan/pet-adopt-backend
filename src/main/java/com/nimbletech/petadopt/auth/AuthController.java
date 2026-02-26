@@ -5,7 +5,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.nimbletech.petadopt.user.UserApi;
-import com.nimbletech.petadopt.user.domain.Role;
+import com.nimbletech.petadopt.user.Role;
 import com.nimbletech.petadopt.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

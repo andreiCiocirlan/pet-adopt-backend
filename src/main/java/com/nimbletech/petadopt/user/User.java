@@ -1,7 +1,5 @@
 package com.nimbletech.petadopt.user;
 
-import com.nimbletech.petadopt.appointment.domain.Appointment;
-import com.nimbletech.petadopt.user.domain.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

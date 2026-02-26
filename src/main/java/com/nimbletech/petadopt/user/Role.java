@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.user.domain;
+package com.nimbletech.petadopt.user;
 
 public enum Role {
     ROLE_USER,

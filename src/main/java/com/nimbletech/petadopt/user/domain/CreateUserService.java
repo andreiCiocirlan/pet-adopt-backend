@@ -1,6 +1,7 @@
 package com.nimbletech.petadopt.user.domain;
 
 import com.nimbletech.petadopt.common.Command;
+import com.nimbletech.petadopt.user.Role;
 import com.nimbletech.petadopt.user.User;
 import com.nimbletech.petadopt.user.domain.models.CreateUserDto;
 import com.nimbletech.petadopt.user.domain.models.UserDto;

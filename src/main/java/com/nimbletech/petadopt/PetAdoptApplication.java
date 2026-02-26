@@ -10,7 +10,7 @@ import com.nimbletech.petadopt.pet.domain.AnimalType;
 import com.nimbletech.petadopt.pet.domain.Pet;
 import com.nimbletech.petadopt.pet.domain.PetStatus;
 import com.nimbletech.petadopt.pet.domain.PetRepository;
-import com.nimbletech.petadopt.user.domain.Role;
+import com.nimbletech.petadopt.user.Role;
 import com.nimbletech.petadopt.user.User;
 import com.nimbletech.petadopt.user.domain.UserRepository;
 import org.springframework.boot.ApplicationRunner;

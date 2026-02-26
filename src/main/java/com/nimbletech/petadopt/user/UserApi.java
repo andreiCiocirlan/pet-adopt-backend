@@ -1,7 +1,6 @@
 package com.nimbletech.petadopt.user;
 
-import com.nimbletech.petadopt.user.model.User;
-import com.nimbletech.petadopt.user.repository.UserRepository;
+import com.nimbletech.petadopt.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

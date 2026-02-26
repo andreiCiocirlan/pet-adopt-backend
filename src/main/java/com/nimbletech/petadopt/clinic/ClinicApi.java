@@ -1,7 +1,6 @@
 package com.nimbletech.petadopt.clinic;
 
-import com.nimbletech.petadopt.clinic.model.Clinic;
-import com.nimbletech.petadopt.clinic.repository.ClinicRepository;
+import com.nimbletech.petadopt.clinic.domain.ClinicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

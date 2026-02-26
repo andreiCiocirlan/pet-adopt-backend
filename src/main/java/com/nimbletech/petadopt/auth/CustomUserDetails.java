@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.auth;
 
-import com.nimbletech.petadopt.user.model.User;
+import com.nimbletech.petadopt.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

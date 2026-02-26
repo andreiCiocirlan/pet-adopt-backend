@@ -1,7 +1,7 @@
 package com.nimbletech.petadopt.auth;
 
 import com.nimbletech.petadopt.user.UserApi;
-import com.nimbletech.petadopt.user.model.User;
+import com.nimbletech.petadopt.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

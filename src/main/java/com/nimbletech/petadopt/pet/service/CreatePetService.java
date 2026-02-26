@@ -1,8 +1,8 @@
 package com.nimbletech.petadopt.pet.service;
 
+import com.nimbletech.petadopt.clinic.ClinicApi;
 import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.clinic.model.Clinic;
-import com.nimbletech.petadopt.clinic.repository.ClinicRepository;
 import com.nimbletech.petadopt.pet.dto.CreatePetDto;
 import com.nimbletech.petadopt.pet.dto.PetDto;
 import com.nimbletech.petadopt.pet.mapper.PetMapper;
@@ -22,13 +22,13 @@ import org.springframework.stereotype.Service;
 public class CreatePetService implements Command<CreatePetDto, PetDto> {
 
     private final PetRepository petRepository;
-    private final ClinicRepository clinicRepository;
+    private final ClinicApi clinicApi;
 
     @Override
     public ResponseEntity<PetDto> execute(CreatePetDto petDto) {
         log.info("Creating pet with name={}, breed={}, clinicId={}", petDto.name(), petDto.breed(), petDto.clinicId());
         Pet pet = PetMapper.toEntity(petDto);
-        Clinic clinic = clinicRepository.findById(petDto.clinicId())
+        Clinic clinic = clinicApi.findById(petDto.clinicId())
                 .orElseThrow(() -> new EntityNotFoundException("Clinic not found"));
         pet.setStatus(PetStatus.AVAILABLE);
         pet.setClinic(clinic);

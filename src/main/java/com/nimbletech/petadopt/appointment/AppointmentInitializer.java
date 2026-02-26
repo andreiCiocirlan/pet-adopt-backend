@@ -2,7 +2,6 @@ package com.nimbletech.petadopt.appointment;
 
 import com.nimbletech.petadopt.appointment.domain.Appointment;
 import com.nimbletech.petadopt.appointment.domain.AppointmentReason;
-import com.nimbletech.petadopt.appointment.domain.AppointmentRepository;
 import com.nimbletech.petadopt.appointment.domain.AppointmentStatus;
 import com.nimbletech.petadopt.pet.Pet;
 import com.nimbletech.petadopt.pet.PetApi;
@@ -15,28 +14,28 @@ import java.time.LocalDateTime;
 
 @Component
 public class AppointmentInitializer implements ApplicationModuleInitializer {
-    private final AppointmentRepository appointmentRepository;
+    private final AppointmentApi appointmentApi;
     private final PetApi petApi;
     private final UserApi userApi;
 
-    public AppointmentInitializer(AppointmentRepository appointmentRepository,
+    public AppointmentInitializer(AppointmentApi appointmentApi,
                                   PetApi petApi,
                                   UserApi userApi) {
-        this.appointmentRepository = appointmentRepository;
+        this.appointmentApi = appointmentApi;
         this.petApi = petApi;
         this.userApi = userApi;
     }
 
     @Override
     public void initialize() {
-        if (appointmentRepository.count() == 0) {
+        if (appointmentApi.count() == 0) {
             Pet max = petApi.findByName("Max").orElseThrow();
             Pet finn = petApi.findByName("Finn").orElseThrow();
             User alice = userApi.findByEmail("alice@example.com").orElseThrow();
 
-            appointmentRepository.save(new Appointment(null, max, alice,
+            appointmentApi.save(new Appointment(null, max, alice,
                 LocalDateTime.now().plusDays(5), AppointmentStatus.PENDING, AppointmentReason.MEET_AND_GREET));
-            appointmentRepository.save(new Appointment(null, finn, alice, 
+            appointmentApi.save(new Appointment(null, finn, alice,
                 LocalDateTime.now().plusDays(5), AppointmentStatus.CONFIRMED, AppointmentReason.MEET_AND_GREET));
         }
     }

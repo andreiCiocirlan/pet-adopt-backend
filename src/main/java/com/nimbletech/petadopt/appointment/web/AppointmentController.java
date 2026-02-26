@@ -1,14 +1,10 @@
 package com.nimbletech.petadopt.appointment.web;
 
+import com.nimbletech.petadopt.appointment.domain.*;
 import com.nimbletech.petadopt.appointment.domain.models.AppointmentDto;
 import com.nimbletech.petadopt.appointment.domain.models.AppointmentStatusRequest;
 import com.nimbletech.petadopt.appointment.domain.models.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.domain.models.UpdateAppointmentStatusRequest;
-import com.nimbletech.petadopt.appointment.domain.AppointmentStatus;
-import com.nimbletech.petadopt.appointment.domain.CreateAppointmentService;
-import com.nimbletech.petadopt.appointment.domain.GetAppointmentsByUserIdService;
-import com.nimbletech.petadopt.appointment.domain.GetAppointmentsService;
-import com.nimbletech.petadopt.appointment.domain.UpdateAppointmentStatusService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

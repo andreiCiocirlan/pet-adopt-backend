@@ -6,7 +6,6 @@ import com.nimbletech.petadopt.appointment.domain.AppointmentRepository;
 import com.nimbletech.petadopt.appointment.domain.AppointmentStatus;
 import com.nimbletech.petadopt.pet.Pet;
 import com.nimbletech.petadopt.pet.PetApi;
-import com.nimbletech.petadopt.pet.domain.PetRepository;
 import com.nimbletech.petadopt.user.User;
 import com.nimbletech.petadopt.user.UserApi;
 import org.springframework.modulith.ApplicationModuleInitializer;

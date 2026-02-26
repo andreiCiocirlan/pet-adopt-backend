@@ -1,8 +1,8 @@
 package com.nimbletech.petadopt.pet.domain;
 
+import com.nimbletech.petadopt.clinic.Clinic;
 import com.nimbletech.petadopt.clinic.ClinicApi;
 import com.nimbletech.petadopt.common.Command;
-import com.nimbletech.petadopt.clinic.Clinic;
 import com.nimbletech.petadopt.pet.Pet;
 import com.nimbletech.petadopt.pet.PetApi;
 import com.nimbletech.petadopt.pet.domain.models.PetDto;

@@ -1,10 +1,8 @@
 package com.nimbletech.petadopt.pet.web;
 
 import com.nimbletech.petadopt.common.PaginatedResult;
-import com.nimbletech.petadopt.pet.domain.models.*;
-import com.nimbletech.petadopt.pet.domain.AnimalType;
-import com.nimbletech.petadopt.pet.domain.PetStatus;
 import com.nimbletech.petadopt.pet.domain.*;
+import com.nimbletech.petadopt.pet.domain.models.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

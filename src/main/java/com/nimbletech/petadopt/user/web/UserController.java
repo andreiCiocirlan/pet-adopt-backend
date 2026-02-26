@@ -1,10 +1,10 @@
 package com.nimbletech.petadopt.user.web;
 
+import com.nimbletech.petadopt.user.domain.*;
 import com.nimbletech.petadopt.user.domain.models.CreateUserDto;
 import com.nimbletech.petadopt.user.domain.models.UpdateUserDto;
 import com.nimbletech.petadopt.user.domain.models.UserDto;
 import com.nimbletech.petadopt.user.domain.models.UserUpdateRequest;
-import com.nimbletech.petadopt.user.domain.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

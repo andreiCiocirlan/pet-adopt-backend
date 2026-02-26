@@ -1,7 +1,7 @@
 package com.nimbletech.petadopt.appointment.domain;
 
-import com.nimbletech.petadopt.common.Query;
 import com.nimbletech.petadopt.appointment.domain.models.AppointmentDto;
+import com.nimbletech.petadopt.common.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

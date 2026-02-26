@@ -2,7 +2,6 @@ package com.nimbletech.petadopt.pet;
 
 import com.nimbletech.petadopt.clinic.Clinic;
 import com.nimbletech.petadopt.clinic.ClinicApi;
-import com.nimbletech.petadopt.clinic.domain.ClinicRepository;
 import com.nimbletech.petadopt.pet.domain.AnimalType;
 import com.nimbletech.petadopt.pet.domain.PetRepository;
 import com.nimbletech.petadopt.pet.domain.PetStatus;

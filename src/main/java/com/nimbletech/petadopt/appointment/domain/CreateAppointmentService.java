@@ -1,13 +1,13 @@
 package com.nimbletech.petadopt.appointment.domain;
 
-import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.appointment.domain.models.AppointmentDto;
 import com.nimbletech.petadopt.appointment.domain.models.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.web.AppointmentAlreadyExistsException;
-import com.nimbletech.petadopt.pet.PetApi;
+import com.nimbletech.petadopt.common.Command;
 import com.nimbletech.petadopt.pet.Pet;
-import com.nimbletech.petadopt.user.UserApi;
+import com.nimbletech.petadopt.pet.PetApi;
 import com.nimbletech.petadopt.user.User;
+import com.nimbletech.petadopt.user.UserApi;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

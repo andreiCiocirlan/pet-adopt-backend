@@ -1,9 +1,7 @@
 package com.nimbletech.petadopt.pet.domain;
 
-import com.nimbletech.petadopt.appointment.domain.Appointment;
 import com.nimbletech.petadopt.clinic.Clinic;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,9 +32,6 @@ public class Pet {
 
     @Enumerated(EnumType.STRING)
     private PetStatus status;
-
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Appointment> appointments = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id")

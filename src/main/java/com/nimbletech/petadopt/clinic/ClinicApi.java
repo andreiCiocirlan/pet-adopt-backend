@@ -15,4 +15,8 @@ public class ClinicApi {
     public Optional<Clinic> findById(String clinicId) {
         return clinicRepository.findById(clinicId);
     }
+
+    public Optional<Clinic> findByName(String clinic) {
+        return clinicRepository.findByName(clinic);
+    }
 }

@@ -42,4 +42,6 @@ public interface PetRepository extends JpaRepository<Pet, String> {
 
     @Query("SELECT p FROM Pet p LEFT JOIN FETCH p.clinic LEFT JOIN FETCH p.imageUrls WHERE p.id = :id")
     Optional<Pet> findByIdWithAssociations(@Param("id") String id);
+
+    Optional<Pet> findByName(String name);
 }

@@ -18,4 +18,8 @@ public class PetApi {
     public Pet save(Pet pet) {
         return petRepository.save(pet);
     }
+
+    public Optional<Pet> findByName(String name) {
+        return petRepository.findByName(name);
+    }
 }

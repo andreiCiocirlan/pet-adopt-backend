@@ -2,6 +2,7 @@ package com.nimbletech.petadopt.pet.domain;
 
 import com.nimbletech.petadopt.common.PaginatedResult;
 import com.nimbletech.petadopt.common.Query;
+import com.nimbletech.petadopt.pet.Pet;
 import com.nimbletech.petadopt.pet.domain.models.PetDto;
 import com.nimbletech.petadopt.pet.domain.models.PetSearchRequest;
 import lombok.RequiredArgsConstructor;

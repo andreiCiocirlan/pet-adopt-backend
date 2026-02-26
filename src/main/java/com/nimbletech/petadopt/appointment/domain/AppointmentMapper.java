@@ -2,7 +2,7 @@ package com.nimbletech.petadopt.appointment.domain;
 
 import com.nimbletech.petadopt.appointment.domain.models.AppointmentDto;
 import com.nimbletech.petadopt.appointment.domain.models.CreateAppointmentRequest;
-import com.nimbletech.petadopt.pet.domain.Pet;
+import com.nimbletech.petadopt.pet.Pet;
 import com.nimbletech.petadopt.user.User;
 
 public class AppointmentMapper {

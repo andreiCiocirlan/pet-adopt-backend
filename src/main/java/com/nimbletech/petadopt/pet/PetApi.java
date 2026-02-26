@@ -1,6 +1,5 @@
 package com.nimbletech.petadopt.pet;
 
-import com.nimbletech.petadopt.pet.domain.Pet;
 import com.nimbletech.petadopt.pet.domain.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

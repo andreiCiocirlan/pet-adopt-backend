@@ -1,6 +1,8 @@
-package com.nimbletech.petadopt.pet.domain;
+package com.nimbletech.petadopt.pet;
 
 import com.nimbletech.petadopt.clinic.Clinic;
+import com.nimbletech.petadopt.pet.domain.AnimalType;
+import com.nimbletech.petadopt.pet.domain.PetStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

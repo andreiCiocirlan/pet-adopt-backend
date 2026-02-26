@@ -43,7 +43,7 @@ public class AuthController {
     private final UserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> loginData) {
         try {
             String email = loginData.get("email");
             String password = loginData.get("password");
@@ -67,7 +67,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<?> refresh(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Map<String, String>> refresh(@RequestBody Map<String, String> request) {
         try {
             String refreshToken = request.get("refreshToken");
             String username = jwtUtil.extractUsername(refreshToken, REFRESH_SECRET_KEY);
@@ -88,7 +88,7 @@ public class AuthController {
     }
 
     @PostMapping("/google-login")
-    public ResponseEntity<?> googleLogin(@RequestBody Map<String, String> body) {
+    public ResponseEntity<Map<String, String>> googleLogin(@RequestBody Map<String, String> body) {
         String idTokenString = body.get("token");
 
         try {

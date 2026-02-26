@@ -4,9 +4,9 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+import com.nimbletech.petadopt.user.UserApi;
 import com.nimbletech.petadopt.user.model.Role;
 import com.nimbletech.petadopt.user.model.User;
-import com.nimbletech.petadopt.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,7 @@ import static com.nimbletech.petadopt.auth.JwtUtil.REFRESH_SECRET_KEY;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-    private final UserRepository userRepository;
+    private final UserApi userApi;
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
@@ -75,7 +75,7 @@ public class AuthController {
                 return ResponseEntity.status(401).body(Map.of("error", "Invalid refresh token"));
             }
 
-            User user = userRepository.findByEmail(username).orElseThrow();
+            User user = userApi.findByEmail(username).orElseThrow();
             String newAccessToken = jwtUtil.generateAccessToken(username, user.getId(),
                     userDetailsService.loadUserByUsername(username).getAuthorities());
 
@@ -103,9 +103,9 @@ public class AuthController {
             String name = (String) payload.get("name");
 
             // Find user by googleId or email
-            User user = userRepository.findByGoogleId(googleId);
+            User user = userApi.findByGoogleId(googleId);
             if (user == null) {
-                user = userRepository.findByEmail(email).orElse(null);
+                user = userApi.findByEmail(email).orElse(null);
             }
 
             if (user == null) {
@@ -115,11 +115,11 @@ public class AuthController {
                 user.setEmail(email);
                 user.setName(name);
                 user.setRoles(Set.of(Role.ROLE_USER)); // default role
-                userRepository.save(user);
+                userApi.save(user);
             } else if (user.getGoogleId() == null) {
                 // Link googleId to existing user by email
                 user.setGoogleId(googleId);
-                userRepository.save(user);
+                userApi.save(user);
             }
 
             // Generate BOTH tokens using updated JwtUtil methods

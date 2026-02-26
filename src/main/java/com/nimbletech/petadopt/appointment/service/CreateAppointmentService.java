@@ -8,10 +8,10 @@ import com.nimbletech.petadopt.appointment.mapper.AppointmentMapper;
 import com.nimbletech.petadopt.appointment.model.Appointment;
 import com.nimbletech.petadopt.appointment.model.AppointmentStatus;
 import com.nimbletech.petadopt.appointment.repository.AppointmentRepository;
+import com.nimbletech.petadopt.pet.PetApi;
 import com.nimbletech.petadopt.pet.model.Pet;
-import com.nimbletech.petadopt.pet.repository.PetRepository;
+import com.nimbletech.petadopt.user.UserApi;
 import com.nimbletech.petadopt.user.model.User;
-import com.nimbletech.petadopt.user.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,17 +26,17 @@ import java.util.List;
 public class CreateAppointmentService implements Command<CreateAppointmentRequest, AppointmentDto> {
 
     private final AppointmentRepository appointmentRepository;
-    private final UserRepository userRepository;
-    private final PetRepository petRepository;
+    private final UserApi userApi;
+    private final PetApi petApi;
 
     @Override
     public ResponseEntity<AppointmentDto> execute(CreateAppointmentRequest cmd) {
         log.info("Creating appointment for userId={} and petId={} on {} for reason: {}",
                 cmd.userId(), cmd.petId(), cmd.appointmentDateTime(), cmd.appointmentReason());
 
-        User user = userRepository.findById(cmd.userId())
+        User user = userApi.findById(cmd.userId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
-        Pet pet = petRepository.findById(cmd.petId())
+        Pet pet = petApi.findById(cmd.petId())
                 .orElseThrow(() -> new EntityNotFoundException("Pet not found"));
 
         if (appointmentRepository.countByUserIdAndPetIdAndStatusIn(user.getId(), pet.getId(), List.of(AppointmentStatus.PENDING, AppointmentStatus.CONFIRMED)) > 0) {

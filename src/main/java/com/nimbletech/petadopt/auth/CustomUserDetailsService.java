@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.config;
+package com.nimbletech.petadopt.auth;
 
 import com.nimbletech.petadopt.user.model.User;
 import com.nimbletech.petadopt.user.repository.UserRepository;

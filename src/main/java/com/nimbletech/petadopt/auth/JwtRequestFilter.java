@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.jwt;
+package com.nimbletech.petadopt.auth;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,7 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-import static com.nimbletech.petadopt.jwt.JwtUtil.ACCESS_SECRET_KEY;
+import static com.nimbletech.petadopt.auth.JwtUtil.ACCESS_SECRET_KEY;
 
 @RequiredArgsConstructor
 @Component

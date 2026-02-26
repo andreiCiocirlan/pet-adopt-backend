@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.jwt;
+package com.nimbletech.petadopt.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

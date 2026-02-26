@@ -1,6 +1,5 @@
-package com.nimbletech.petadopt.config;
+package com.nimbletech.petadopt.auth;
 
-import com.nimbletech.petadopt.jwt.JwtRequestFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

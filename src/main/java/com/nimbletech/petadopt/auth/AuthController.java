@@ -1,11 +1,9 @@
-package com.nimbletech.petadopt.user.controller;
+package com.nimbletech.petadopt.auth;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
-import com.nimbletech.petadopt.config.CustomUserDetails;
-import com.nimbletech.petadopt.jwt.JwtUtil;
 import com.nimbletech.petadopt.user.model.Role;
 import com.nimbletech.petadopt.user.model.User;
 import com.nimbletech.petadopt.user.repository.UserRepository;
@@ -29,7 +27,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
-import static com.nimbletech.petadopt.jwt.JwtUtil.REFRESH_SECRET_KEY;
+import static com.nimbletech.petadopt.auth.JwtUtil.REFRESH_SECRET_KEY;
 
 @Slf4j
 @RequiredArgsConstructor

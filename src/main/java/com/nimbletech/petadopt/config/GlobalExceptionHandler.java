@@ -1,4 +1,4 @@
-package com.nimbletech.petadopt.exceptions;
+package com.nimbletech.petadopt.config;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.persistence.EntityNotFoundException;

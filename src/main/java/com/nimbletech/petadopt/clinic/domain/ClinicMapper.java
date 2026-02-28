@@ -1,7 +1,9 @@
-package com.nimbletech.petadopt.clinic;
+package com.nimbletech.petadopt.clinic.domain;
 
-import com.nimbletech.petadopt.clinic.domain.CreateClinicDto;
+import com.nimbletech.petadopt.clinic.Clinic;
+import org.springframework.modulith.NamedInterface;
 
+@NamedInterface
 public class ClinicMapper {
 
     public static ClinicDto toDto(Clinic clinic) {

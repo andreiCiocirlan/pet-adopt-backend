@@ -1,6 +1,6 @@
 package com.nimbletech.petadopt.pet.domain.models;
 
-import com.nimbletech.petadopt.clinic.ClinicDto;
+import com.nimbletech.petadopt.clinic.domain.ClinicDto;
 import com.nimbletech.petadopt.pet.domain.AnimalType;
 import com.nimbletech.petadopt.pet.domain.PetStatus;
 import lombok.Builder;

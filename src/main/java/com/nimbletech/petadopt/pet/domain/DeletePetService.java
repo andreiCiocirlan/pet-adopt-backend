@@ -21,7 +21,7 @@ public class DeletePetService implements Command<String, Void> {
     public ResponseEntity<Void> execute(String id) {
         log.info("Soft-deleting pet with id={}", id);
 
-        Pet pet = petRepository.findById(id)
+        Pet pet = petRepository.findByIdWithAssociations(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pet not found"));
 
         // Only allow removal of ADOPTED pets

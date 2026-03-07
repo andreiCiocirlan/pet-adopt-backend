@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -17,6 +18,7 @@ public class UpdatePetService implements Command<PetUpdateRequest, PetDto> {
     private final PetRepository petRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<PetDto> execute(PetUpdateRequest updateRequest) {
         log.info("Updating pet with id={}", updateRequest.id());
         return petRepository.findById(updateRequest.id())

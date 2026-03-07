@@ -14,7 +14,7 @@ class PetApiService implements PetApi {
     
     @Override
     public Optional<Pet> findById(String petId) {
-        return petRepository.findById(petId);
+        return petRepository.findByIdWithAssociations(petId);
     }
 
     @Override

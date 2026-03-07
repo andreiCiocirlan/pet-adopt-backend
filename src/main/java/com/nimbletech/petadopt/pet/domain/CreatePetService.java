@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -22,6 +23,7 @@ public class CreatePetService implements Command<CreatePetDto, PetDto> {
     private final ClinicApi clinicApi;
 
     @Override
+    @Transactional
     public ResponseEntity<PetDto> execute(CreatePetDto petDto) {
         log.info("Creating pet with name={}, breed={}, clinicId={}", petDto.name(), petDto.breed(), petDto.clinicId());
         Pet pet = PetMapper.toEntity(petDto);

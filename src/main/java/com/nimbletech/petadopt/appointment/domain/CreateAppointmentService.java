@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
     private final PetApi petApi;
 
     @Override
+    @Transactional
     public ResponseEntity<AppointmentDto> execute(CreateAppointmentRequest cmd) {
         log.info("Creating appointment for userId={} and petId={} on {} for reason: {}",
                 cmd.userId(), cmd.petId(), cmd.appointmentDateTime(), cmd.appointmentReason());

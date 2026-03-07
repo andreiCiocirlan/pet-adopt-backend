@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -24,6 +25,7 @@ public class CreateUserService implements Command<CreateUserDto, UserDto> {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
+    @Transactional
     public ResponseEntity<UserDto> execute(CreateUserDto dto) {
         log.info("Creating user with email={}", dto.email());
         User user = UserMapper.toEntity(dto);

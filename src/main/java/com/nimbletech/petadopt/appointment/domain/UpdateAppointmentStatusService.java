@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -17,6 +18,7 @@ public class UpdateAppointmentStatusService implements Command<UpdateAppointment
     private final AppointmentRepository appointmentRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<AppointmentDto> execute(UpdateAppointmentStatusRequest cmd) {
         log.info("Updating appointment with id={} to status={}", cmd.appointmentId(), cmd.updateAppointmentRequest().status());
         Appointment appointment = appointmentRepository.findById(cmd.appointmentId())

@@ -6,6 +6,13 @@ import lombok.Builder;
 import java.util.Set;
 
 @Builder
-public record UpdatePetDto(String name, int age, AnimalType type, String breed, String health, String characteristics,
+public record UpdatePetDto(String name,
+                           int age,
+                           AnimalType type,
+                           String breed,
+                           String characteristics,
+                           boolean isNeutered,
+                           boolean hasMicrochip,
+                           boolean isVaccinated,
                            Set<String> imageUrls) {
 }

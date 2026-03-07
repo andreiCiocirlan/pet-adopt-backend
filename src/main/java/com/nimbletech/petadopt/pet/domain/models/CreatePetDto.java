@@ -13,6 +13,9 @@ public record CreatePetDto (
     String breed,
     String health,
     String characteristics,
+    boolean isNeutered,
+    boolean hasMicrochip,
+    boolean isVaccinated,
     String clinicId,
     Set<String> imageUrls
 ){}

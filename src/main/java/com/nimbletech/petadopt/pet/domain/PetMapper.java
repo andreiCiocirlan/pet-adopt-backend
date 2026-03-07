@@ -15,8 +15,10 @@ public class PetMapper {
                 .age(pet.getAge())
                 .type(pet.getType())
                 .breed(pet.getBreed())
-                .health(pet.getHealth())
                 .characteristics(pet.getCharacteristics())
+                .isNeutered(pet.isNeutered())
+                .hasMicrochip(pet.isHasMicrochip())
+                .isVaccinated(pet.isVaccinated())
                 .imageUrls(pet.getImageUrls())
                 .status(pet.getStatus())
                 .clinic(ClinicMapper.toDto(pet.getClinic()))
@@ -30,8 +32,10 @@ public class PetMapper {
         pet.setAge(petDto.age());
         pet.setType(petDto.type());
         pet.setBreed(petDto.breed());
-        pet.setHealth(petDto.health());
         pet.setCharacteristics(petDto.characteristics());
+        pet.setNeutered(petDto.isNeutered());
+        pet.setHasMicrochip(petDto.hasMicrochip());
+        pet.setVaccinated(petDto.isVaccinated());
         pet.setImageUrls(petDto.imageUrls());
         return pet;
     }

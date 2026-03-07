@@ -25,8 +25,10 @@ public class UpdatePetService implements Command<PetUpdateRequest, PetDto> {
                 existingPet.setAge(updateRequest.updatePetDto().age());
                 existingPet.setType(updateRequest.updatePetDto().type());
                 existingPet.setBreed(updateRequest.updatePetDto().breed());
-                existingPet.setHealth(updateRequest.updatePetDto().health());
                 existingPet.setCharacteristics(updateRequest.updatePetDto().characteristics());
+                existingPet.setNeutered(updateRequest.updatePetDto().isNeutered());
+                existingPet.setHasMicrochip(updateRequest.updatePetDto().hasMicrochip());
+                existingPet.setVaccinated(updateRequest.updatePetDto().isVaccinated());
                 existingPet.setImageUrls(updateRequest.updatePetDto().imageUrls());
                 Pet updated = petRepository.save(existingPet);
                 return ResponseEntity.ok(PetMapper.toDto(updated));

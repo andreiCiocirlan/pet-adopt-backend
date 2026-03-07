@@ -25,7 +25,6 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private AnimalType type;
     private String breed;
-    private String health;
     private String characteristics;
     @ElementCollection
     @CollectionTable(name = "pet_image_urls", joinColumns = @JoinColumn(name = "pet_id"))
@@ -35,17 +34,20 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private PetStatus status;
 
+    private boolean isNeutered = false;
+    private boolean hasMicrochip = false;
+    private boolean isVaccinated = false;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id")
     private Clinic clinic;
 
-    public Pet(String id, String name, int age, AnimalType type, String breed, String health, String characteristics, Set<String> imageUrls, PetStatus status, Clinic clinic) {
+    public Pet(String id, String name, int age, AnimalType type, String breed, String characteristics, Set<String> imageUrls, PetStatus status, Clinic clinic) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.type = type;
         this.breed = breed;
-        this.health = health;
         this.characteristics = characteristics;
         this.imageUrls = imageUrls;
         this.status = status;

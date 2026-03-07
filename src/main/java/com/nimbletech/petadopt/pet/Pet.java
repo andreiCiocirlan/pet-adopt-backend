@@ -20,12 +20,18 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
     private String name;
     private int age;
-    @Enumerated(EnumType.STRING)
-    private AnimalType type;
     private String breed;
     private String characteristics;
+    private boolean isNeutered = false;
+    private boolean hasMicrochip = false;
+    private boolean isVaccinated = false;
+
+    @Enumerated(EnumType.STRING)
+    private AnimalType type;
+
     @ElementCollection
     @CollectionTable(name = "pet_image_urls", joinColumns = @JoinColumn(name = "pet_id"))
     @Column(name = "image_url")
@@ -33,10 +39,6 @@ public class Pet {
 
     @Enumerated(EnumType.STRING)
     private PetStatus status;
-
-    private boolean isNeutered = false;
-    private boolean hasMicrochip = false;
-    private boolean isVaccinated = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id")

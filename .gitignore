@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+pet-images
+
 ### STS ###
 .apt_generated
 .classpath

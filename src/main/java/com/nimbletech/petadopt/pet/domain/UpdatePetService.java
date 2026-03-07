@@ -21,7 +21,7 @@ public class UpdatePetService implements Command<PetUpdateRequest, PetDto> {
     @Transactional
     public ResponseEntity<PetDto> execute(PetUpdateRequest updateRequest) {
         log.info("Updating pet with id={}", updateRequest.id());
-        return petRepository.findById(updateRequest.id())
+        return petRepository.findByIdWithAssociations (updateRequest.id())
             .map(existingPet -> {
                 existingPet.setName(updateRequest.updatePetDto().name());
                 existingPet.setAge(updateRequest.updatePetDto().age());

@@ -86,6 +86,10 @@ public class PetController {
         // Fetch the image from the external URL
         byte[] imageBytes = restTemplate.getForObject(imageUrl, byte[].class);
 
+        if (imageBytes == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         // Retrieve content type from the response (optional, for accuracy)
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG); // Default fallback

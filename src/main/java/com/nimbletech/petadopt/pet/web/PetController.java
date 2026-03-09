@@ -64,7 +64,7 @@ public class PetController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<PetDto> updatePet(@PathVariable String id, @RequestBody UpdatePetDto petDto) {
+    public ResponseEntity<PetDto> updatePet(@PathVariable String id, @Valid @RequestBody UpdatePetDto petDto) {
         PetUpdateRequest updateRequest = new PetUpdateRequest(id, petDto);
         return updatePetService.execute(updateRequest);
     }

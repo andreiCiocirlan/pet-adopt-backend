@@ -2,6 +2,7 @@ package com.nimbletech.petadopt.pet.domain.models;
 
 import com.nimbletech.petadopt.clinic.domain.ClinicDto;
 import com.nimbletech.petadopt.pet.domain.AnimalType;
+import com.nimbletech.petadopt.pet.domain.Breed;
 import com.nimbletech.petadopt.pet.domain.PetStatus;
 import lombok.Builder;
 
@@ -13,7 +14,7 @@ public record PetDto(
         String name,
         int age,
         AnimalType type,
-        String breed,
+        Breed breed,
         String health,
         String characteristics,
         boolean isNeutered,

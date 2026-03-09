@@ -3,6 +3,7 @@ package com.nimbletech.petadopt.pet;
 import com.nimbletech.petadopt.clinic.Clinic;
 import com.nimbletech.petadopt.clinic.ClinicApi;
 import com.nimbletech.petadopt.pet.domain.AnimalType;
+import com.nimbletech.petadopt.pet.domain.Breed;
 import com.nimbletech.petadopt.pet.domain.PetStatus;
 import org.springframework.modulith.ApplicationModuleInitializer;
 import org.springframework.stereotype.Component;
@@ -40,16 +41,16 @@ public class PetInitializer implements ApplicationModuleInitializer {
             Set<String> cat3Urls = Set.of("https://dbw3zep4prcju.cloudfront.net/animal/8919cfaa-b6dd-44b9-a32f-b01c5d4135f1/image/cba18a17-4d00-4c11-a811-1b02659f21a0.jpg?versionId=C5.UIUC14vCmhVAF73RacdFPWkNg5uyx",
                     "https://dbw3zep4prcju.cloudfront.net/animal/8919cfaa-b6dd-44b9-a32f-b01c5d4135f1/image/630ba0c9-d996-4973-83c7-dea1a4afb6e4.jpg?versionId=8HuIz6ABs9N5jE9GXHraeJFh3wh31uM_",
                     "https://dbw3zep4prcju.cloudfront.net/animal/8919cfaa-b6dd-44b9-a32f-b01c5d4135f1/image/deb251ad-9144-4333-8c32-609fabccb603.jpg?versionId=7sAwrBbJG7sUykYx1aI34h5BZosgjutr");
-            Pet dog1 = petApi.save(new Pet(null, "Max", 3, AnimalType.DOG, "Golden Retriever", "Affectionate, Friendly, Gentle, Playful, Smart, Loves", dog1Urls, PetStatus.AVAILABLE, clinic1));
-            Pet dog2 = petApi.save(new Pet(null, "Finn", 4, AnimalType.DOG, "Husky", "Affectionate, Dignified, Curious, Couch, Friendly, Gentle, Independent, Loves, Loyal, Playful, Smart, Quiet", dog2Urls, PetStatus.AVAILABLE, clinic1));
-            Pet cat1 = petApi.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, "Siamese", "Affectionate, Loyal, Gentle, Independent, Quiet, Couch Potato", cat1Urls, PetStatus.ADOPTED, clinic1));
-            Pet cat2 = petApi.save(new Pet(null, "Misha", 1, AnimalType.CAT, "Tabby", "Friendly, Affectionate, Playful, Curious, Funny, Snuggly", cat2Urls, PetStatus.AVAILABLE, clinic1));
-            Pet cat3 = petApi.save(new Pet(null, "Tommy", 1, AnimalType.CAT, "Tabby", "Friendly, Loyal, Playful, Funny, Couch Potato, Snuggly, Likes To Be Held", cat3Urls, PetStatus.AVAILABLE, clinic1));
+            Pet dog1 = petApi.save(new Pet(null, "Max", 3, AnimalType.DOG, Breed.GOLDEN_RETRIEVER, "Affectionate, Friendly, Gentle, Playful, Smart, Loves", dog1Urls, PetStatus.AVAILABLE, clinic1));
+            Pet dog2 = petApi.save(new Pet(null, "Finn", 4, AnimalType.DOG, Breed.HUSKY, "Affectionate, Dignified, Curious, Couch, Friendly, Gentle, Independent, Loves, Loyal, Playful, Smart, Quiet", dog2Urls, PetStatus.AVAILABLE, clinic1));
+            Pet cat1 = petApi.save(new Pet(null, "Whiskers", 2, AnimalType.CAT, Breed.SIAMESE, "Affectionate, Loyal, Gentle, Independent, Quiet, Couch Potato", cat1Urls, PetStatus.ADOPTED, clinic1));
+            Pet cat2 = petApi.save(new Pet(null, "Misha", 1, AnimalType.CAT, Breed.TABBY, "Friendly, Affectionate, Playful, Curious, Funny, Snuggly", cat2Urls, PetStatus.AVAILABLE, clinic1));
+            Pet cat3 = petApi.save(new Pet(null, "Tommy", 1, AnimalType.CAT, Breed.TABBY, "Friendly, Loyal, Playful, Funny, Couch Potato, Snuggly, Likes To Be Held", cat3Urls, PetStatus.AVAILABLE, clinic1));
 
             Set<String> bird1Urls = Set.of("https://dbw3zep4prcju.cloudfront.net/animal/5e819d8d-676b-4d4a-b743-e62618f32e5f/image/b10cf77f-253a-46f3-ad85-f03634655641.jpg?versionId=pdMztSAPx0IsKENVyqTNFguPO3got7n1&bust=1757515927&width=1080",
                     "https://dbw3zep4prcju.cloudfront.net/animal/5e819d8d-676b-4d4a-b743-e62618f32e5f/image/5f99bf31-ea22-4f7a-811a-7aaaf41de101.jpg?versionId=g8mEYJgCjgi_G8gQZcjQmMufvUUyBQKv&bust=1757515985&width=1080",
                     "https://dbw3zep4prcju.cloudfront.net/animal/5e819d8d-676b-4d4a-b743-e62618f32e5f/image/7b31b8dc-1db0-4dbf-adbd-a5de86899ca4.jpg?versionId=a8VtVegGu4GuHyk9VmiERpol_1T8SL0s&bust=1757515986&width=1080");
-            Pet bird1 = petApi.save(new Pet(null, "Mango", 2, AnimalType.BIRD, "Cockatiel", "Chirpy and affectionate", bird1Urls, PetStatus.AVAILABLE, clinic2));
+            Pet bird1 = petApi.save(new Pet(null, "Mango", 2, AnimalType.BIRD, Breed.COCKATIEL, "Chirpy and affectionate", bird1Urls, PetStatus.AVAILABLE, clinic2));
         }
     }
 }

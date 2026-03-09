@@ -58,8 +58,7 @@ public class Pet {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public Pet(String id, String name, int age, AnimalType type, Breed breed, String characteristics, Set<String> imageUrls, PetStatus status, Clinic clinic) {
-        this.id = id;
+    public Pet(String name, int age, AnimalType type, Breed breed, String characteristics, Set<String> imageUrls, PetStatus status, Clinic clinic) {
         this.name = name;
         this.age = age;
         this.type = Objects.requireNonNull(type, "Animal type is required");

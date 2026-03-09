@@ -3,6 +3,7 @@ package com.nimbletech.petadopt.pet.web;
 import com.nimbletech.petadopt.common.PaginatedResult;
 import com.nimbletech.petadopt.pet.domain.*;
 import com.nimbletech.petadopt.pet.domain.models.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -51,7 +52,7 @@ public class PetController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<PetDto> createPet(@RequestBody CreatePetDto petDto) {
+    public ResponseEntity<PetDto> createPet(@Valid @RequestBody CreatePetDto petDto) {
         return createPetService.execute(petDto);
     }
 

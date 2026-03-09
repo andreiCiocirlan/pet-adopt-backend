@@ -1,8 +1,5 @@
 package com.nimbletech.petadopt.pet.domain;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 public enum Breed {
     // Dogs
     LABRADOR_RETRIEVER,

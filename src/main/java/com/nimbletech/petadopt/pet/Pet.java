@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -58,7 +59,7 @@ public class Pet {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.type = type;
+        this.type = Objects.requireNonNull(type, "Animal type is required");
         this.breed = breed;
         this.characteristics = characteristics;
         this.imageUrls = imageUrls;

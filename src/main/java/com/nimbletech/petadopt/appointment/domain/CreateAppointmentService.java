@@ -4,6 +4,7 @@ import com.nimbletech.petadopt.appointment.domain.models.AppointmentDto;
 import com.nimbletech.petadopt.appointment.domain.models.CreateAppointmentRequest;
 import com.nimbletech.petadopt.appointment.web.AppointmentAlreadyExistsException;
 import com.nimbletech.petadopt.common.Command;
+import com.nimbletech.petadopt.notification.domain.models.AppointmentStatusChangedEvent;
 import com.nimbletech.petadopt.pet.Pet;
 import com.nimbletech.petadopt.pet.PetApi;
 import com.nimbletech.petadopt.user.User;
@@ -11,10 +12,12 @@ import com.nimbletech.petadopt.user.UserApi;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -23,6 +26,7 @@ import java.util.List;
 public class CreateAppointmentService implements Command<CreateAppointmentRequest, AppointmentDto> {
 
     private final AppointmentRepository appointmentRepository;
+    private final ApplicationEventPublisher applicationEventPublisher;
     private final UserApi userApi;
     private final PetApi petApi;
 
@@ -44,6 +48,15 @@ public class CreateAppointmentService implements Command<CreateAppointmentReques
 
         Appointment appointment = AppointmentMapper.toEntity(cmd, user, pet);
         appointment = appointmentRepository.save(appointment);
+
+        applicationEventPublisher.publishEvent(new AppointmentStatusChangedEvent(
+                appointment.getId(),
+                cmd.userId(),
+                AppointmentStatus.PENDING.name(),
+                "Appointment created successfully - pending admin confirmation",
+                LocalDateTime.now()
+        ));
+
         return ResponseEntity.ok(AppointmentMapper.toDto(appointment));
     }
 }

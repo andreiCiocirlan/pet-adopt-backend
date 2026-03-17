@@ -5,7 +5,7 @@ import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NotificationEventListener {
+class NotificationEventListener {
 
     private final NotificationRepository notificationRepository;
 

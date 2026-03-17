@@ -4,7 +4,7 @@ import com.nimbletech.petadopt.notification.domain.models.NotificationDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NotificationMapper {
+class NotificationMapper {
     
     public static NotificationDto toDto(Notification notification) {
         return new NotificationDto(

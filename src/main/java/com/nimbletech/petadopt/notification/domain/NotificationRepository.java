@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
-public interface NotificationRepository extends JpaRepository<Notification, UUID> {
+interface NotificationRepository extends JpaRepository<Notification, UUID> {
     List<Notification> findByUserIdOrderByCreatedAtDesc(Long userId);
     List<Notification> findByUserIdAndIsReadFalseOrderByCreatedAtDesc(Long userId);
     @Modifying
